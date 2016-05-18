@@ -1,0 +1,21 @@
+.datos
+{
+	border-radius: 4px;
+	background-color:  #ffffff;
+	margin: 100px auto;
+	width: 320px;
+	-webki-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+h1
+{
+	font-family: sans-serif;
+	font-size: 30px;
+	color: #0B3861;
+}
+
+#colorB
+{
+	background-color: #0B3861;
+}

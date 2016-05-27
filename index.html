@@ -290,9 +290,26 @@
 
     <script src="js/base.js"></script>
     <script>
+        window.onbeforeunload = confirmExit;
         var data = [];
-        var dias = 0;
-        var semanas = 0;
+        var dias;
+        var semanas;
+        if(sessionStorage.dias)
+        {
+          dias=Number(sessionStorage.dias);
+        }else {
+          {
+            dias=0;
+          }
+        }
+        if(sessionStorage.semanas)
+        {
+          semanas=Number(sessionStorage.semanas);
+        }else {
+          {
+            semanas=0;
+          }
+        }
         var inter = setInterval(function() {
             if (data.length < 12) {
                 if (dias == 3) {
@@ -337,6 +354,16 @@
         }
 
         var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
+
+        function confirmExit() {
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.dias = dias;
+                sessionStorage.semanas = semanas;
+            } else {
+                return ("Sorry, your browser does not support web storage...");
+            }
+
+        }
 
         $(document).ready(function() {});
     </script>

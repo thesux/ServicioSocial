@@ -294,21 +294,19 @@
         var data = [];
         var dias;
         var semanas;
-        if(sessionStorage.dias)
-        {
-          dias=Number(sessionStorage.dias);
-        }else {
-          {
-            dias=0;
-          }
+        if (sessionStorage.dias) {
+            dias = Number(sessionStorage.dias);
+        } else {
+            {
+                dias = 0;
+            }
         }
-        if(sessionStorage.semanas)
-        {
-          semanas=Number(sessionStorage.semanas);
-        }else {
-          {
-            semanas=0;
-          }
+        if (sessionStorage.semanas) {
+            semanas = Number(sessionStorage.semanas);
+        } else {
+            {
+                semanas = 0;
+            }
         }
         var inter = setInterval(function() {
             if (data.length < 12) {

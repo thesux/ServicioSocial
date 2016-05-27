@@ -26,8 +26,15 @@
                 </a>
                 <a class="brand" href="index.html">Business Strategy Game Simulation
                 </a>
+
                 <div class="nav-collapse">
                     <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-time"></i>
+                                <b id="tiempoJuego">Semanas: 0 Dias: 0</b>
+                            </a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="icon-user"></i>
@@ -36,18 +43,14 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="javascript:;">Salir</a>
+                                    <a href="javascript:;">Cerrar sesion</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <div class="subnavbar">
@@ -205,7 +208,74 @@
     <script language="javascript" type="text/javascript" src="js/full-calendar/fullcalendar.min.js"></script>
 
     <script src="js/base.js"></script>
-    <script></script>
+    <script>
+        window.onbeforeunload = confirmExit;
+        var dias;
+        var semanas;
+        var meses;
+        var anios;
+        if (sessionStorage.dias) {
+            dias = Number(sessionStorage.dias);
+        } else {
+            {
+                dias = 0;
+            }
+        }
+        if (sessionStorage.semanas) {
+            semanas = Number(sessionStorage.semanas);
+        } else {
+            {
+                semanas = 0;
+            }
+        }
+        if (sessionStorage.meses) {
+            meses = Number(sessionStorage.meses);
+        } else {
+            {
+                meses = 0;
+            }
+        }
+        if (sessionStorage.anios) {
+            anios = Number(sessionStorage.anios);
+        } else {
+            {
+                anios = 0;
+            }
+        }
+        $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+        var inter = setInterval(function() {
+
+            if (dias >= 30) {
+                dias = 0;
+                semanas = semanas + 1;
+                if (semanas >= 5) {
+                    semanas = 1;
+                    meses = meses + 1;
+                    if (meses >= 13) {
+                        meses = 1;
+                        anios = anios + 1;
+                    }
+                }
+            }
+            dias = dias + 1;
+            $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+
+            //clearInterval(inter);
+
+        }, 1000);
+
+        function confirmExit() {
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.dias = dias;
+                sessionStorage.semanas = semanas;
+                sessionStorage.meses = meses;
+                sessionStorage.anios = anios;
+            } else {
+                return ("Sorry, your browser does not support web storage...");
+            }
+
+        }
+    </script>
 
 </body>
 

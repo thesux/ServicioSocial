@@ -308,21 +308,43 @@
                 semanas = 0;
             }
         }
-        var inter = setInterval(function() {
-            if (data.length < 12) {
-                if (dias == 3) {
-                    dias = 0;
-                    semanas = semanas + 1;
-                }
-                dias = dias + 1;
-                $("#tiempoJuego").text("Semanas: " + semanas + " Dias: " + dias);
-                data.push(Math.floor(Math.random() * 100));
-                var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
-            } else {
-                clearInterval(inter);
+        if (sessionStorage.meses) {
+            meses = Number(sessionStorage.meses);
+        } else {
+            {
+                meses = 0;
             }
+        }
+        if (sessionStorage.anios) {
+            anios = Number(sessionStorage.anios);
+        } else {
+            {
+                anios = 0;
+            }
+        }
+        $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+        var inter = setInterval(function() {
 
-        }, 2000);
+            if (dias >= 30) {
+                dias = 0;
+                semanas = semanas + 1;
+                if (semanas >= 5) {
+                    semanas = 1;
+                    meses = meses + 1;
+                    if (meses >= 13) {
+                        meses = 1;
+                        anios = anios + 1;
+                    }
+                }
+            }
+            dias = dias + 1;
+            $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+            data.push(Math.floor(Math.random() * 100));
+            var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
+
+            //clearInterval(inter);
+
+        }, 1000);
 
         var lineChartData = {
             labels: [
@@ -357,6 +379,8 @@
             if (typeof(Storage) !== "undefined") {
                 sessionStorage.dias = dias;
                 sessionStorage.semanas = semanas;
+                sessionStorage.meses = meses;
+                sessionStorage.anios = anios;
             } else {
                 return ("Sorry, your browser does not support web storage...");
             }

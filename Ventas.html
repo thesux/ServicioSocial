@@ -419,6 +419,13 @@
         var semanas;
         var meses;
         var anios;
+        if (sessionStorage.getItem("datosTabla") == null) {
+            var data = [];
+        } else {
+            {
+                var data = JSON.parse(sessionStorage.getItem("datosTabla"));
+            }
+        }
         if (sessionStorage.dias) {
             dias = Number(sessionStorage.dias);
         } else {
@@ -456,9 +463,12 @@
                 if (semanas >= 5) {
                     semanas = 1;
                     meses = meses + 1;
+                    data.push(Math.floor(Math.random() * 100));
                     if (meses >= 13) {
                         meses = 1;
                         anios = anios + 1;
+                        data.length = 0;
+                        data.push(Math.floor(Math.random() * 100));
                     }
                 }
             }
@@ -467,7 +477,7 @@
 
             //clearInterval(inter);
 
-        }, 1000);
+        }, 100);
 
         function confirmExit() {
             if (typeof(Storage) !== "undefined") {
@@ -475,6 +485,7 @@
                 sessionStorage.semanas = semanas;
                 sessionStorage.meses = meses;
                 sessionStorage.anios = anios;
+                sessionStorage.setItem("datosTabla", JSON.stringify(data));
             } else {
                 return ("Actualize su navegador, o de lo contrario el juego no funcionará");
             }

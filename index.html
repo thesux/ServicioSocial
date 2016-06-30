@@ -292,8 +292,13 @@
     <script>
         window.onbeforeunload = confirmExit;
         var data = [];
-        var dias;
-        var semanas;
+        if (sessionStorage.getItem("datosTabla") == null) {
+            var data = [];
+        } else {
+            {
+                var data = JSON.parse(sessionStorage.getItem("datosTabla"));
+            }
+        }
         if (sessionStorage.dias) {
             dias = Number(sessionStorage.dias);
         } else {
@@ -345,7 +350,6 @@
             dias = dias + 1;
             $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
 
-
             //clearInterval(inter);
 
         }, 100);
@@ -385,6 +389,7 @@
                 sessionStorage.semanas = semanas;
                 sessionStorage.meses = meses;
                 sessionStorage.anios = anios;
+                sessionStorage.setItem("datosTabla", JSON.stringify(data));
             } else {
                 return ("Actualize su navegador, o de lo contrario el juego no funcionará");
             }

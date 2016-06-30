@@ -1,8 +1,4 @@
 window.onbeforeunload = confirmExit;
-var dias;
-var semanas;
-var meses;
-var anios;
 if (sessionStorage.getItem("datosTabla") == null) {
     var data = [];
 } else {
@@ -61,7 +57,7 @@ var inter = setInterval(function() {
 
     //clearInterval(inter);
 
-}, 100);
+}, pasoDeTiempo);
 
 function confirmExit() {
     if (typeof(Storage) !== "undefined") {

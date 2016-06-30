@@ -172,23 +172,6 @@
 
                         </div>
 
-                        <div class="span6">
-
-                            <div class="widget">
-
-                                <div class="widget-header">
-                                    <i class="icon-list-alt"></i>
-                                    <h3>Ventas mensuales</h3>
-                                </div>
-
-                                <div class="widget-content">
-                                    <canvas id="bar-chart" class="chart-holder" height="250" width="538"></canvas>
-                                </div>
-
-                            </div>
-
-                        </div>
-
                     </div>
 
                 </div>
@@ -362,7 +345,6 @@
 
             }
 
-            var myLine = new Chart(document.getElementById("bar-chart").getContext("2d")).Bar(barChartData);
             var myLine = new Chart(document.getElementById("bar-chart1").getContext("2d")).Bar(barChartData);
             var myLine = new Chart(document.getElementById("bar-chart2").getContext("2d")).Bar(barChartData);
             var myLine = new Chart(document.getElementById("bar-chart3").getContext("2d")).Bar(barChartData);

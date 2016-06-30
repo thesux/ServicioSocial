@@ -104,20 +104,16 @@
                                 <h3>Reportes</h3>
                             </div>
                             <div class="widget-content">
-                              <div class="well">
+                                <div class="well">
 
-                                <ul class="nav nav-tabs" id="tabs">
-                                    <li><a href="#tab1" data-toggle="tab">Tab 1</a></li>
-                                    <li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
-                                </ul>
+                                    <ul class="nav nav-tabs" id="tabs">
 
-                                <div class="tab-content">
-                                    <div class="tab-pane" id="tab1">tab1 content</div>
-                                    <div class="tab-pane" id="tab2">tab2 content</div>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        
+                                    </div>
                                 </div>
-                              </div>
-
-
 
                             </div>
 
@@ -243,6 +239,83 @@
 
     <script src="js/base.js"></script>
     <script src="js/pasoTiempo.js"></script>
-    <script src="js/interaccionesBase.js"></script>
+    <script>
+        window.onbeforeunload = confirmExit;
+        if (sessionStorage.getItem("datosTabla") == null) {
+            var data = [];
+        } else {
+            {
+                var data = JSON.parse(sessionStorage.getItem("datosTabla"));
+            }
+        }
+        if (sessionStorage.dias) {
+            dias = Number(sessionStorage.dias);
+        } else {
+            {
+                dias = 0;
+            }
+        }
+        if (sessionStorage.semanas) {
+            semanas = Number(sessionStorage.semanas);
+        } else {
+            {
+                semanas = 0;
+            }
+        }
+        if (sessionStorage.meses) {
+            meses = Number(sessionStorage.meses);
+        } else {
+            {
+                meses = 0;
+            }
+        }
+        if (sessionStorage.anios) {
+            anios = Number(sessionStorage.anios);
+        } else {
+            {
+                anios = 0;
+            }
+        }
+        $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+        var inter = setInterval(function() {
+
+            if (dias >= 7) {
+                dias = 0;
+                semanas = semanas + 1;
+                if (semanas >= 5) {
+                    semanas = 1;
+                    meses = meses + 1;
+                    data.push(Math.floor(Math.random() * 100));
+                    if (meses >= 13) {
+                        meses = 1;
+                        anios = anios + 1;
+                        data.length = 0;
+                        data.push(Math.floor(Math.random() * 100));
+                        $('<li><a href="#tab'+anios+'" data-toggle="tab">Tab '+anios+'</a></li>').appendTo('#tabs');
+                        $('<div class="tab-pane" id="tab'+anios+'">tab' +anios+' content</div>').appendTo('.tab-content');
+                    }
+                }
+            }
+            dias = dias + 1;
+            $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+
+            //clearInterval(inter);
+
+        }, pasoDeTiempo);
+
+        function confirmExit() {
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.dias = dias;
+                sessionStorage.semanas = semanas;
+                sessionStorage.meses = meses;
+                sessionStorage.anios = anios;
+                sessionStorage.setItem("datosTabla", JSON.stringify(data));
+            } else {
+                return ("Actualize su navegador, o de lo contrario el juego no funcionará");
+            }
+
+        }
+    </script>
+
 </body>
 </html>

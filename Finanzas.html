@@ -111,7 +111,7 @@
                                     </ul>
 
                                     <div class="tab-content">
-                                        
+
                                     </div>
                                 </div>
 
@@ -292,7 +292,47 @@
                         data.length = 0;
                         data.push(Math.floor(Math.random() * 100));
                         $('<li><a href="#tab'+anios+'" data-toggle="tab">Tab '+anios+'</a></li>').appendTo('#tabs');
-                        $('<div class="tab-pane" id="tab'+anios+'">tab' +anios+' content</div>').appendTo('.tab-content');
+                        $('<div class="tab-pane" id="tab'+anios+'"><canvas id="chart'+anios+'" class="chart-holder" height="250" width="400"></canvas></div>').appendTo('.tab-content');
+                        var lineChartData = {
+                            labels: [
+                                "Ene",
+                                "Feb",
+                                "Mar",
+                                "Abr",
+                                "May",
+                                "Jun",
+                                "Jul",
+                                "Ago",
+                                "Sep",
+                                "Oct",
+                                "Nov",
+                                "Dic"
+                            ],
+                            datasets: [
+                                {
+                                    fillColor: "rgba(75, 208, 63, 0.5)",
+                                    strokeColor: "rgba(0, 255, 33, 1)",
+                                    pointColor: "rgba(27, 102, 1, 1)",
+                                    pointStrokeColor: "#fff",
+                                    data: [
+                                      50,
+                                      54,
+                                      34,
+                                      53,
+                                      123,
+                                      35,
+                                      34,
+                                      34,
+                                      55,
+                                      34,
+                                      53,
+                                      44
+                                    ]
+                                }
+                            ]
+
+                        }
+                        var myLine = new Chart(document.getElementById("chart"+anios).getContext("2d")).Line(lineChartData);
                     }
                 }
             }

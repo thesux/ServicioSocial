@@ -331,20 +331,24 @@
                 if (semanas >= 5) {
                     semanas = 1;
                     meses = meses + 1;
+                    data.push(Math.floor(Math.random() * 100));
+                    var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
                     if (meses >= 13) {
                         meses = 1;
                         anios = anios + 1;
+                        data.length = 0;
+                        data.push(Math.floor(Math.random() * 100));
+                        var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
                     }
                 }
             }
             dias = dias + 1;
             $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
-            data.push(Math.floor(Math.random() * 100));
-            var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
+
 
             //clearInterval(inter);
 
-        }, 1000);
+        }, 100);
 
         var lineChartData = {
             labels: [

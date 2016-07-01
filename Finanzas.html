@@ -106,13 +106,9 @@
                             <div class="widget-content">
                                 <div class="well">
 
-                                    <ul class="nav nav-tabs" id="tabs">
+                                    <ul class="nav nav-tabs" id="tabs"></ul>
 
-                                    </ul>
-
-                                    <div class="tab-content">
-
-                                    </div>
+                                    <div class="tab-content"></div>
                                 </div>
 
                             </div>
@@ -244,37 +240,76 @@
         if (sessionStorage.getItem("datosTabla") == null) {
             var data = [];
         } else {
-            {
-                var data = JSON.parse(sessionStorage.getItem("datosTabla"));
+
+            var data = JSON.parse(sessionStorage.getItem("datosTabla"));
+
+        }
+        if (sessionStorage.getItem("datosXAnio") == null) {
+            var dataAnios = [];
+        } else {
+
+            var dataAnios = JSON.parse(sessionStorage.getItem("datosXAnio"));
+            for (i = 0; i < dataAnios.length; i++) {
+                var dataAux = dataAnios[i];
+                $('<li><a href="#tab' + (i + 1) + '" data-toggle="tab">Año ' + (i + 1) + '</a></li>').appendTo('#tabs');
+                $('<div class="tab-pane" id="tab' + (i + 1) + '"><canvas id="chart' + (i + 1) + '" class="chart-holder" height="250" width="400"></canvas></div>').appendTo('.tab-content');
+                var lineChartData = {
+                    labels: [
+                        "Ene",
+                        "Feb",
+                        "Mar",
+                        "Abr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Ago",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dic"
+                    ],
+                    datasets: [
+                        {
+                            fillColor: "rgba(75, 208, 63, 0.5)",
+                            strokeColor: "rgba(0, 255, 33, 1)",
+                            pointColor: "rgba(27, 102, 1, 1)",
+                            pointStrokeColor: "#fff",
+                            data: dataAux
+                        }
+                    ]
+
+                }
+                var myLine = new Chart(document.getElementById("chart" + (i + 1)).getContext("2d")).Line(lineChartData);
             }
+
         }
         if (sessionStorage.dias) {
             dias = Number(sessionStorage.dias);
         } else {
-            {
-                dias = 0;
-            }
+
+            dias = 0;
+
         }
         if (sessionStorage.semanas) {
             semanas = Number(sessionStorage.semanas);
         } else {
-            {
-                semanas = 0;
-            }
+
+            semanas = 0;
+
         }
         if (sessionStorage.meses) {
             meses = Number(sessionStorage.meses);
         } else {
-            {
-                meses = 0;
-            }
+
+            meses = 0;
+
         }
         if (sessionStorage.anios) {
             anios = Number(sessionStorage.anios);
         } else {
-            {
-                anios = 0;
-            }
+
+            anios = 0;
+
         }
         $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
         var inter = setInterval(function() {
@@ -289,10 +324,12 @@
                     if (meses >= 13) {
                         meses = 1;
                         anios = anios + 1;
+                        var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
+                        dataAnios.push(arrAux);
                         data.length = 0;
                         data.push(Math.floor(Math.random() * 100));
-                        $('<li><a href="#tab'+anios+'" data-toggle="tab">Tab '+anios+'</a></li>').appendTo('#tabs');
-                        $('<div class="tab-pane" id="tab'+anios+'"><canvas id="chart'+anios+'" class="chart-holder" height="250" width="400"></canvas></div>').appendTo('.tab-content');
+                        $('<li><a href="#tab' + anios + '" data-toggle="tab">Año ' + anios + '</a></li>').appendTo('#tabs');
+                        $('<div class="tab-pane" id="tab' + anios + '"><canvas id="chart' + anios + '" class="chart-holder" height="250" width="400"></canvas></div>').appendTo('.tab-content');
                         var lineChartData = {
                             labels: [
                                 "Ene",
@@ -314,25 +351,12 @@
                                     strokeColor: "rgba(0, 255, 33, 1)",
                                     pointColor: "rgba(27, 102, 1, 1)",
                                     pointStrokeColor: "#fff",
-                                    data: [
-                                      50,
-                                      54,
-                                      34,
-                                      53,
-                                      123,
-                                      35,
-                                      34,
-                                      34,
-                                      55,
-                                      34,
-                                      53,
-                                      44
-                                    ]
+                                    data: arrAux
                                 }
                             ]
 
                         }
-                        var myLine = new Chart(document.getElementById("chart"+anios).getContext("2d")).Line(lineChartData);
+                        var myLine = new Chart(document.getElementById("chart" + anios).getContext("2d")).Line(lineChartData);
                     }
                 }
             }
@@ -350,6 +374,7 @@
                 sessionStorage.meses = meses;
                 sessionStorage.anios = anios;
                 sessionStorage.setItem("datosTabla", JSON.stringify(data));
+                sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
             } else {
                 return ("Actualize su navegador, o de lo contrario el juego no funcionará");
             }

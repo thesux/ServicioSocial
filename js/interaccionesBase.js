@@ -42,31 +42,40 @@ if (sessionStorage.anios) {
 
 }
 $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
-var inter = setInterval(function() {
 
-    if (dias >= 7) {
-        dias = 0;
-        semanas = semanas + 1;
-        if (semanas >= 5) {
-            semanas = 1;
-            meses = meses + 1;
-            data.push(Math.floor(Math.random() * 100));
-            if (meses >= 13) {
-                meses = 1;
-                anios = anios + 1;
-                var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
-                dataAnios.push(arrAux);
-                data.length = 0;
+if (anios < 2) {
+    var inter = setInterval(function() {
+
+        if (anios == 2) {
+            clearInterval(inter);
+            dias=dias-1;
+        }
+
+        if (dias >= 7) {
+            dias = 0;
+            semanas = semanas + 1;
+            if (semanas >= 5) {
+                semanas = 1;
+                meses = meses + 1;
                 data.push(Math.floor(Math.random() * 100));
+                if (meses >= 13) {
+                    meses = 1;
+                    anios = anios + 1;
+                    var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
+                    dataAnios.push(arrAux);
+                    data.length = 0;
+                    data.push(Math.floor(Math.random() * 100));
+                }
             }
         }
-    }
-    dias = dias + 1;
-    $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+        dias = dias + 1;
+        $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
 
-    //clearInterval(inter);
 
-}, pasoDeTiempo);
+
+    }, pasoDeTiempo);
+}
+
 
 function confirmExit() {
     if (typeof(Storage) !== "undefined") {

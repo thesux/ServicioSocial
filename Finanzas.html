@@ -312,60 +312,65 @@
 
         }
         $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
-        var inter = setInterval(function() {
 
-            if (dias >= 7) {
-                dias = 0;
-                semanas = semanas + 1;
-                if (semanas >= 5) {
-                    semanas = 1;
-                    meses = meses + 1;
-                    data.push(Math.floor(Math.random() * 100));
-                    if (meses >= 13) {
-                        meses = 1;
-                        anios = anios + 1;
-                        var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
-                        dataAnios.push(arrAux);
-                        data.length = 0;
+        if (anios < 2) {
+            var inter = setInterval(function() {
+              if (anios == 2) {
+                  clearInterval(inter);
+                  dias=dias-1;
+              }
+
+                if (dias >= 7) {
+                    dias = 0;
+                    semanas = semanas + 1;
+                    if (semanas >= 5) {
+                        semanas = 1;
+                        meses = meses + 1;
                         data.push(Math.floor(Math.random() * 100));
-                        $('<li><a href="#tab' + anios + '" data-toggle="tab">Año ' + anios + '</a></li>').appendTo('#tabs');
-                        $('<div class="tab-pane" id="tab' + anios + '"><canvas id="chart' + anios + '" class="chart-holder" height="250" width="400"></canvas></div>').appendTo('.tab-content');
-                        var lineChartData = {
-                            labels: [
-                                "Ene",
-                                "Feb",
-                                "Mar",
-                                "Abr",
-                                "May",
-                                "Jun",
-                                "Jul",
-                                "Ago",
-                                "Sep",
-                                "Oct",
-                                "Nov",
-                                "Dic"
-                            ],
-                            datasets: [
-                                {
-                                    fillColor: "rgba(75, 208, 63, 0.5)",
-                                    strokeColor: "rgba(0, 255, 33, 1)",
-                                    pointColor: "rgba(27, 102, 1, 1)",
-                                    pointStrokeColor: "#fff",
-                                    data: arrAux
-                                }
-                            ]
+                        if (meses >= 13) {
+                            meses = 1;
+                            anios = anios + 1;
+                            var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
+                            dataAnios.push(arrAux);
+                            data.length = 0;
+                            data.push(Math.floor(Math.random() * 100));
+                            $('<li><a href="#tab' + anios + '" data-toggle="tab">Año ' + anios + '</a></li>').appendTo('#tabs');
+                            $('<div class="tab-pane" id="tab' + anios + '"><canvas id="chart' + anios + '" class="chart-holder" height="250" width="400"></canvas></div>').appendTo('.tab-content');
+                            var lineChartData = {
+                                labels: [
+                                    "Ene",
+                                    "Feb",
+                                    "Mar",
+                                    "Abr",
+                                    "May",
+                                    "Jun",
+                                    "Jul",
+                                    "Ago",
+                                    "Sep",
+                                    "Oct",
+                                    "Nov",
+                                    "Dic"
+                                ],
+                                datasets: [
+                                    {
+                                        fillColor: "rgba(75, 208, 63, 0.5)",
+                                        strokeColor: "rgba(0, 255, 33, 1)",
+                                        pointColor: "rgba(27, 102, 1, 1)",
+                                        pointStrokeColor: "#fff",
+                                        data: arrAux
+                                    }
+                                ]
 
+                            }
+                            var myLine = new Chart(document.getElementById("chart" + anios).getContext("2d")).Line(lineChartData);
                         }
-                        var myLine = new Chart(document.getElementById("chart" + anios).getContext("2d")).Line(lineChartData);
                     }
                 }
-            }
-            dias = dias + 1;
-            $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+                dias = dias + 1;
+                $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
 
-            //clearInterval(inter);
-
-        }, pasoDeTiempo);
+            }, pasoDeTiempo);
+        }
 
         function confirmExit() {
             if (typeof(Storage) !== "undefined") {

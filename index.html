@@ -106,7 +106,7 @@
                                         <div id="big_stats" class="cf">
                                             <div class="stat">
                                                 <i class="icon-usd"></i>
-                                                <span class="value">5496845</span>
+                                                <span class="value">70000</span>
                                             </div>
 
                                             <div class="stat">
@@ -121,7 +121,7 @@
 
                                             <div class="stat">
                                                 <i class="icon-info"></i>
-                                                <span class="value">Ganando
+                                                <span class="value" id="estatus">Ganando
                                                 </span>
                                             </div>
                                         </div>
@@ -363,33 +363,40 @@
 
         }
 
-        var inter = setInterval(function() {
+        if (anios < 2) {
+            var inter = setInterval(function() {
+              if (anios == 2) {
+                  clearInterval(inter);
+                  dias=dias-1;
+                  $("#estatus").text("Finalizado");
+              }
 
-            if (dias >= 7) {
-                dias = 0;
-                semanas = semanas + 1;
-                if (semanas >= 5) {
-                    semanas = 1;
-                    meses = meses + 1;
-                    data.push(Math.floor(Math.random() * 100));
-                    var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
-                    if (meses >= 13) {
-                        meses = 1;
-                        anios = anios + 1;
-                        var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
-                        dataAnios.push(arrAux);
-                        data.length = 0;
+                if (dias >= 7) {
+                    dias = 0;
+                    semanas = semanas + 1;
+                    if (semanas >= 5) {
+                        semanas = 1;
+                        meses = meses + 1;
                         data.push(Math.floor(Math.random() * 100));
                         var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
+                        if (meses >= 13) {
+                            meses = 1;
+                            anios = anios + 1;
+                            var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
+                            dataAnios.push(arrAux);
+                            data.length = 0;
+                            data.push(Math.floor(Math.random() * 100));
+                            var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
+                        }
                     }
                 }
-            }
-            dias = dias + 1;
-            $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+                dias = dias + 1;
+                $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
 
-            //clearInterval(inter);
-
-        }, pasoDeTiempo);
+            }, pasoDeTiempo);
+        }else {
+          $("#estatus").text("Finalizado");
+        }
 
         var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
 

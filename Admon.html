@@ -353,7 +353,7 @@
 
             var codSalario = '<input type="number" min="0" class="form-control" value="' + act[5] + '" style="width:60%">';
 
-            $('<tr class="Reg R'+i+'"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).MessageBox(' + i + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaEmpleados');
+            $('<tr class="Reg R' + i + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).MessageBox(' + i + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaEmpleados');
         }
 
         if (anios < 2) {
@@ -387,7 +387,27 @@
             }, pasoDeTiempo);
         }
         $.fn.MessageBox = function(id) {
-          $( 'tr.R'+id+'' ).replaceWith( '<tr class="Reg R'+id+'"><td>aaaaa</td><td>aaaaa</td><td>aaaaa</td><td>aaaaaa</td><td>aaaaaa</td><td>aaaaaaaa</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).MessageBox(' + id + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>' );
+            empleados[id][3] = 1;
+            var act = empleados[id];
+            var nombre = act[0];
+            var ap = act[1];
+            var am = act[2];
+            if (act[3] == 0) {
+                var estado = "En busqueda";
+            } else {
+                var estado = "Contratado";
+            }
+            if (act[4] == 0) {
+                var codSelectAct = '<select style="width: 100%"><option value="Gerente" selected>Gerente</option><option value="Almacen">Almacen</option><option value="Cajero">Cajero</option></select>';
+            } else if (act[4] == 1) {
+                var codSelectAct = '<select style="width: 100%"><option value="Gerente">Gerente</option><option value="Almacen" selected>Almacen</option><option value="Cajero">Cajero</option></select>';
+            } else {
+                var codSelectAct = '<select style="width: 100%"><option value="Gerente">Gerente</option><option value="Almacen">Almacen</option><option value="Cajero" selected>Cajero</option></select>';
+            }
+
+            var codSalario = '<input type="number" min="0" class="form-control" value="' + act[5] + '" style="width:60%">';
+            $('tr.R' + id).replaceWith('<tr class="Reg R' + id + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).MessageBox(' + id + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>');
+            alert(id);
         };
 
         function confirmExit() {

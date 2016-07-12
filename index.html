@@ -322,11 +322,11 @@
 
         if (anios < 2) {
             var inter = setInterval(function() {
-              if (anios == 2) {
-                  clearInterval(inter);
-                  dias=dias-1;
-                  $("#estatus").text("Finalizado");
-              }
+                if (anios == 2) {
+                    clearInterval(inter);
+                    dias = dias - 1;
+                    $("#estatus").text("Finalizado");
+                }
 
                 if (dias >= 7) {
                     dias = 0;
@@ -351,8 +351,8 @@
                 $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
 
             }, pasoDeTiempo);
-        }else {
-          $("#estatus").text("Finalizado");
+        } else {
+            $("#estatus").text("Finalizado");
         }
 
         var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);

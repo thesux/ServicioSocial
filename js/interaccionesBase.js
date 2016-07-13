@@ -13,6 +13,70 @@ if (sessionStorage.getItem("datosXAnio") == null) {
     var dataAnios = JSON.parse(sessionStorage.getItem("datosXAnio"));
 
 }
+
+if (sessionStorage.getItem("empleados") == null) {
+    var emp1 = [
+        "Esmeralda",
+        "Fortunata",
+        "Jerónimo",
+        0,
+        0,
+        0
+    ];
+    var emp2 = [
+        "Paulino",
+        "Baldo",
+        "Irene",
+        0,
+        0,
+        0
+    ];
+    var emp3 = [
+        "Almudena",
+        "Gil",
+        "Chelo",
+        0,
+        0,
+        0
+    ];
+    var emp4 = [
+        "Régulo",
+        "Aristides",
+        "Salud",
+        0,
+        0,
+        0
+    ];
+    var emp5 = [
+        "Constanza",
+        "Florentino",
+        "Florentino",
+        0,
+        0,
+        0
+    ];
+    var empleados = new Array(emp1, emp2, emp3, emp4, emp5);
+} else {
+
+    var empleados = JSON.parse(sessionStorage.getItem("empleados"));
+
+}
+
+if (sessionStorage.dinero) {
+    dinero = Number(sessionStorage.dinero);
+} else {
+
+    dinero = 70000;
+
+}
+
+if (sessionStorage.dias) {
+    dinero = Number(sessionStorage.dinero);
+} else {
+
+    dinero = 70000;
+
+}
 if (sessionStorage.dias) {
     dias = Number(sessionStorage.dias);
 } else {
@@ -44,11 +108,19 @@ if (sessionStorage.anios) {
 $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
 
 if (anios < 2) {
+    totalPagaEmpleados = 0;
+    for (var i = 0; i < empleados.length; i++) {
+        var act = empleados[i];
+        if (act[3] == 1) {
+
+            totalPagaEmpleados = totalPagaEmpleados + act[5];
+        }
+    }
     var inter = setInterval(function() {
 
         if (anios == 2) {
             clearInterval(inter);
-            dias=dias-1;
+            dias = dias - 1;
         }
 
         if (dias >= 7) {
@@ -56,6 +128,7 @@ if (anios < 2) {
             semanas = semanas + 1;
             if (semanas >= 5) {
                 semanas = 1;
+                dinero = dinero - totalPagaEmpleados;
                 meses = meses + 1;
                 data.push(Math.floor(Math.random() * 100));
                 if (meses >= 13) {
@@ -83,8 +156,10 @@ function confirmExit() {
         sessionStorage.semanas = semanas;
         sessionStorage.meses = meses;
         sessionStorage.anios = anios;
+        sessionStorage.dinero = dinero;
         sessionStorage.setItem("datosTabla", JSON.stringify(data));
         sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
+        sessionStorage.setItem("empleados", JSON.stringify(empleados));
     } else {
         return ("Actualize su navegador, o de lo contrario el juego no funcionará");
     }

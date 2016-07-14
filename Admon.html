@@ -555,6 +555,10 @@
 
                 var codSalario = '<input type="number" min="0" class="form-control" value="' + 0 + '" style="width:60%" id="Sal' + sig + '">';
                 $('<tr class="Reg R' + sig + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Contratar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaEmpleados');
+                $("#txtNombre").val('');
+                $("#txtAm").val('');
+                $("#txtAp").val('');
+
             };
 
             $('#myModal').on('shown.bs.modal', function() {

@@ -103,6 +103,7 @@
                                 <h3>Compras</h3>
                             </div>
                             <div class="widget-content">
+                                <button class="btn btn-small btn-success" data-toggle="modal" data-target="#myModal">Agregar empleado</button>
                                 <table class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -235,6 +236,28 @@
 
             </div>
 
+        </div>
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Agregar nuevo empleado</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><input type="text" placeholder="Nombre" id="txtNombre"></p>
+                        <p><input type="text" placeholder="Apellido Materno" id="txtAm"></p>
+                        <p><input type="text" placeholder="Apellido Paterno" id="txtAp"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onClick="$(this).AgregarEmpleado();">Aceptar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <script src="js/jquery-1.7.2.min.js"></script>
@@ -370,20 +393,20 @@
                 if (act[3] == 0) {
                     $('<tr class="Reg R' + i + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Contratar(' + i + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaEmpleados');
                 } else {
-                    $('<tr class="Reg R' + i + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-primary" onClick="$(this).Contratar(' + i + ');"><i class="btn-icon-only icon-refresh"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Despedir(' + i + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaEmpleados');
+                    $('<tr class="Reg R' + i + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-primary" onClick="$(this).Actualizar(' + i + ');"><i class="btn-icon-only icon-refresh"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Despedir(' + i + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaEmpleados');
                 }
 
             }
 
             if (anios < 2) {
-              totalPagaEmpleados = 0;
-              for (var i = 0; i < empleados.length; i++) {
-                  var act = empleados[i];
-                  if (act[3] == 1) {
+                totalPagaEmpleados = 0;
+                for (var i = 0; i < empleados.length; i++) {
+                    var act = empleados[i];
+                    if (act[3] == 1) {
 
-                      totalPagaEmpleados = totalPagaEmpleados + act[5];
-                  }
-              }
+                        totalPagaEmpleados = totalPagaEmpleados + act[5];
+                    }
+                }
 
                 var inter = setInterval(function() {
 
@@ -419,7 +442,6 @@
             $.fn.Contratar = function(id) {
                 empleados[id][3] = 1;
                 var puesto = $("#Selec" + id).val();
-                alert(puesto);
                 if (puesto == "Gerente") {
                     empleados[id][4] = 0;
                 } else if (puesto == "Almacen") {
@@ -429,7 +451,6 @@
                 }
                 var salar = parseInt($("#Sal" + id).val());
                 empleados[id][5] = salar;
-
                 var act = empleados[id];
                 var nombre = act[0];
                 var ap = act[1];
@@ -437,11 +458,11 @@
                 var estado = "Contratado";
 
                 if (act[4] == 0) {
-                    var codSelectAct = '<select style="width: 100%"><option value="Gerente" selected>Gerente</option><option value="Almacen">Almacen</option><option value="Cajero">Cajero</option></select>';
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente" selected>Gerente</option><option value="Almacen">Almacen</option><option value="Cajero">Cajero</option></select>';
                 } else if (act[4] == 1) {
-                    var codSelectAct = '<select style="width: 100%"><option value="Gerente">Gerente</option><option value="Almacen" selected>Almacen</option><option value="Cajero">Cajero</option></select>';
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente">Gerente</option><option value="Almacen" selected>Almacen</option><option value="Cajero">Cajero</option></select>';
                 } else {
-                    var codSelectAct = '<select style="width: 100%"><option value="Gerente">Gerente</option><option value="Almacen">Almacen</option><option value="Cajero" selected>Cajero</option></select>';
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente">Gerente</option><option value="Almacen">Almacen</option><option value="Cajero" selected>Cajero</option></select>';
                 }
                 totalPagaEmpleados = 0;
                 for (var i = 0; i < empleados.length; i++) {
@@ -452,12 +473,50 @@
                     }
                 }
 
-                var codSalario = '<input type="number" min="0" class="form-control" value="' + act[5] + '" style="width:60%">';
-                $('tr.R' + id).replaceWith('<tr class="Reg R' + id + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-primary" onClick="$(this).Contratar(' + id + ');"><i class="btn-icon-only icon-refresh"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Despedir(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+                var codSalario = '<input type="number" min="0" class="form-control" value="' + salar + '" style="width:60%" id="Sal' + id + '">';
+                $('tr.R' + id).replaceWith('<tr class="Reg R' + id + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-primary" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-refresh"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Despedir(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+            };
+
+            $.fn.Actualizar = function(id) {
+                var puesto = $("#Selec" + id).val();
+                if (puesto == "Gerente") {
+                    empleados[id][4] = 0;
+                } else if (puesto == "Almacen") {
+                    empleados[id][4] = 1;
+                } else {
+                    empleados[id][4] = 2;
+                }
+                var salar = parseInt($("#Sal" + id).val());
+                empleados[id][5] = salar;
+                var act = empleados[id];
+                var nombre = act[0];
+                var ap = act[1];
+                var am = act[2];
+                var estado = "Contratado";
+
+                if (act[4] == 0) {
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente" selected>Gerente</option><option value="Almacen">Almacen</option><option value="Cajero">Cajero</option></select>';
+                } else if (act[4] == 1) {
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente">Gerente</option><option value="Almacen" selected>Almacen</option><option value="Cajero">Cajero</option></select>';
+                } else {
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente">Gerente</option><option value="Almacen">Almacen</option><option value="Cajero" selected>Cajero</option></select>';
+                }
+                totalPagaEmpleados = 0;
+                for (var i = 0; i < empleados.length; i++) {
+                    var act = empleados[i];
+                    if (act[3] == 1) {
+
+                        totalPagaEmpleados = totalPagaEmpleados + act[5];
+                    }
+                }
+
+                var codSalario = '<input type="number" min="0" class="form-control" value="' + salar + '" style="width:60%" id="Sal' + id + '">';
+                $('tr.R' + id).replaceWith('<tr class="Reg R' + id + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-primary" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-refresh"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Despedir(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
             };
 
             $.fn.Despedir = function(id) {
                 empleados[id][3] = 0;
+                empleados[id][5] = 0;
                 var act = empleados[id];
                 var nombre = act[0];
                 var ap = act[1];
@@ -465,16 +524,42 @@
                 var estado = "En busqueda";
 
                 if (act[4] == 0) {
-                    var codSelectAct = '<select style="width: 100%"><option value="Gerente" selected>Gerente</option><option value="Almacen">Almacen</option><option value="Cajero">Cajero</option></select>';
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente" selected>Gerente</option><option value="Almacen">Almacen</option><option value="Cajero">Cajero</option></select>';
                 } else if (act[4] == 1) {
-                    var codSelectAct = '<select style="width: 100%"><option value="Gerente">Gerente</option><option value="Almacen" selected>Almacen</option><option value="Cajero">Cajero</option></select>';
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente">Gerente</option><option value="Almacen" selected>Almacen</option><option value="Cajero">Cajero</option></select>';
                 } else {
-                    var codSelectAct = '<select style="width: 100%"><option value="Gerente">Gerente</option><option value="Almacen">Almacen</option><option value="Cajero" selected>Cajero</option></select>';
+                    var codSelectAct = '<select style="width: 100%" id="Selec' + id + '"><option value="Gerente">Gerente</option><option value="Almacen">Almacen</option><option value="Cajero" selected>Cajero</option></select>';
                 }
 
-                var codSalario = '<input type="number" min="0" class="form-control" value="' + act[5] + '" style="width:60%">';
+                var codSalario = '<input type="number" min="0" class="form-control" value="' + act[5] + '" style="width:60%" id="Sal' + id + '">';
                 $('tr.R' + id).replaceWith('<tr class="Reg R' + id + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Contratar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>');
             };
+
+            $.fn.AgregarEmpleado = function() {
+                var nombre = $("#txtNombre").val();
+                var am = $("#txtAm").val();
+                var ap = $("#txtAp").val();
+                var empnuevo = [
+                    nombre,
+                    am,
+                    ap,
+                    0,
+                    0,
+                    0
+                ];
+                var sig = empleados.length;
+                empleados.push(empnuevo);
+                var estado = "En busqueda";
+
+                var codSelectAct = '<select style="width: 100%" id="Selec' + sig + '"><option value="Gerente" selected>Gerente</option><option value="Almacen">Almacen</option><option value="Cajero">Cajero</option></select>';
+
+                var codSalario = '<input type="number" min="0" class="form-control" value="' + 0 + '" style="width:60%" id="Sal' + sig + '">';
+                $('<tr class="Reg R' + sig + '"><td>' + nombre + '</td><td>' + ap + '</td><td>' + am + '</td><td>' + estado + '</td><td>' + codSelectAct + '</td><td>' + codSalario + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Contratar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaEmpleados');
+            };
+
+            $('#myModal').on('shown.bs.modal', function() {
+                $('#myInput').focus()
+            })
 
             function confirmExit() {
                 if (typeof(Storage) !== "undefined") {

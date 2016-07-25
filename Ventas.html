@@ -147,8 +147,7 @@
                                         <th class="td-actions"></th>
                                     </tr>
                                 </thead>
-                                <tbody id="tablaCompraPrendas">
-                                </tbody>
+                                <tbody id="tablaCompraPrendas"></tbody>
                             </table>
                         </div>
 
@@ -283,10 +282,10 @@
                             <option value="Calcetas">Calcetas</option>
                         </select>
                     </p>
-                    <p><input type="text" placeholder="Marca" id="txtMarca  "></p>
+                    <p><input type="text" placeholder="Marca" id="txtMarca"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onClick="$(this).AgregarEmpleado();">Aceptar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onClick="$(this).AgregarPrenda();">Aceptar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -480,6 +479,51 @@
 
             }, pasoDeTiempo);
         }
+
+        $.fn.AgregarPrenda = function() {
+            var tipoPrenda = $("#tipoPrenda").val();
+            var marca = $("#txtMarca").val();
+            var prennuevo = [tipoPrenda, marca, 0, 0];
+            var sig = prendasStock.length;
+            prendasStock.push(prennuevo);
+
+            var codVenta = '<input type="number" min="0" value="0" class="form-control" style="width:60%" id="Ven' + sig + '">';
+
+            $('<tr class="Reg R1' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>0</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + sig + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPrendasStock');
+
+            precio = Math.floor((Math.random() * 1000) + 100);
+            stock = Math.floor((Math.random() * 100) + 10);
+            var prennuevo = [tipoPrenda, marca, precio, stock];
+            prendasCompra.push(prennuevo);
+
+            var codVenta = '<input type="number" min="0" value="0" class="form-control" style="width:60%" id="Comp' + sig + '">';
+
+            $('<tr class="Reg R2' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>$' + precio + '.00</td><td>' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaCompraPrendas');
+
+            $("#tipoPrenda").val('Camisa');
+            $("#txtMarca").val('');
+
+        };
+
+        $.fn.Eliminar = function(id) {
+
+            $('tr.R1' + id).replaceWith('');
+            $('tr.R2' + id).replaceWith('');
+
+            var index = prendasStock.indexOf(id);
+            if (index > -1) {
+                prendasStock.splice(index, 1);
+            }
+
+            var index = prendasCompra.indexOf(id);
+            if (index > -1) {
+                prendasCompra.splice(index, 1);
+            }
+        };
+
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#myInput').focus()
+        })
 
         function confirmExit() {
             if (typeof(Storage) !== "undefined") {

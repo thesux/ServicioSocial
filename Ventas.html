@@ -103,6 +103,7 @@
                             <h3>Inventario</h3>
                         </div>
                         <div class="widget-content">
+                            <button class="btn btn-small btn-success" data-toggle="modal" data-target="#myModal">Agregar prenda</button>
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -118,27 +119,7 @@
                                         <th class="td-actions"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            Tenis
-                                        </td>
-                                        <td>
-                                            Converse
-                                        </td>
-                                        <td>
-                                            100
-                                        </td>
-                                        <td>
-                                            <input type="number" min="0" class="form-control" style="width:60%">
-                                        </td>
-                                        <td class="td-actions">
-                                            <a href="javascript:;" class="btn btn-small btn-success">
-                                                <i class="btn-icon-only icon-ok"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                <tbody id="tablaPrendasStock"></tbody>
                             </table>
                         </div>
 
@@ -166,29 +147,7 @@
                                         <th class="td-actions"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            Tenis
-                                        </td>
-                                        <td>
-                                            Converse
-                                        </td>
-                                        <td>
-                                            $700.00
-                                        </td>
-                                        <td>
-                                            100
-                                        </td>
-                                        <td>
-                                            <input type="number" min="0" class="form-control" style="width:60%">
-                                        </td>
-                                        <td class="td-actions">
-                                            <a href="javascript:;" class="btn btn-small btn-success">
-                                                <i class="btn-icon-only icon-ok"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <tbody id="tablaCompraPrendas">
                                 </tbody>
                             </table>
                         </div>
@@ -304,6 +263,36 @@
         </div>
 
     </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar nueva prenda</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <p>
+                        <select id="tipoPrenda">
+                            <option value="Camisa">Camisa</option>
+                            <option value="Camiseta">Camiseta</option>
+                            <option value="Zapatos">Zapatos</option>
+                            <option value="Tenis">Tenis</option>
+                            <option value="Pantalones">Pantalones</option>
+                            <option value="Pantalon para deporte">Pantalon para deporte</option>
+                            <option value="Calcetas">Calcetas</option>
+                        </select>
+                    </p>
+                    <p><input type="text" placeholder="Marca" id="txtMarca  "></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onClick="$(this).AgregarEmpleado();">Aceptar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/excanvas.min.js"></script>
@@ -314,7 +303,200 @@
     <script src="js/base.js"></script>
 
     <script src="js/pasoTiempo.js"></script>
-    <script src="js/interaccionesBase.js"></script>
+    <script>
+        window.onbeforeunload = confirmExit;
+        if (sessionStorage.getItem("datosTabla") == null) {
+            var data = [];
+        } else {
+
+            var data = JSON.parse(sessionStorage.getItem("datosTabla"));
+
+        }
+        if (sessionStorage.getItem("datosXAnio") == null) {
+            var dataAnios = [];
+        } else {
+
+            var dataAnios = JSON.parse(sessionStorage.getItem("datosXAnio"));
+
+        }
+
+        var pren1 = ["Tenis", "Converse", 0, 0];
+        var prendasStock = new Array(pren1);
+
+        var prencomp1 = ["Tenis", "Converse", 700, 100];
+
+        var prendasCompra = new Array(prencomp1);
+
+        if (sessionStorage.getItem("empleados") == null) {
+            var emp1 = [
+                "Esmeralda",
+                "Fortunata",
+                "Jerónimo",
+                0,
+                0,
+                0
+            ];
+            var emp2 = [
+                "Paulino",
+                "Baldo",
+                "Irene",
+                0,
+                0,
+                0
+            ];
+            var emp3 = [
+                "Almudena",
+                "Gil",
+                "Chelo",
+                0,
+                0,
+                0
+            ];
+            var emp4 = [
+                "Régulo",
+                "Aristides",
+                "Salud",
+                0,
+                0,
+                0
+            ];
+            var emp5 = [
+                "Constanza",
+                "Florentino",
+                "Florentino",
+                0,
+                0,
+                0
+            ];
+            var empleados = new Array(emp1, emp2, emp3, emp4, emp5);
+        } else {
+
+            var empleados = JSON.parse(sessionStorage.getItem("empleados"));
+
+        }
+
+        if (sessionStorage.dinero) {
+            dinero = Number(sessionStorage.dinero);
+        } else {
+
+            dinero = 70000;
+
+        }
+
+        if (sessionStorage.dias) {
+            dinero = Number(sessionStorage.dinero);
+        } else {
+
+            dinero = 70000;
+
+        }
+        if (sessionStorage.dias) {
+            dias = Number(sessionStorage.dias);
+        } else {
+
+            dias = 0;
+
+        }
+        if (sessionStorage.semanas) {
+            semanas = Number(sessionStorage.semanas);
+        } else {
+
+            semanas = 0;
+
+        }
+        if (sessionStorage.meses) {
+            meses = Number(sessionStorage.meses);
+        } else {
+
+            meses = 0;
+
+        }
+        if (sessionStorage.anios) {
+            anios = Number(sessionStorage.anios);
+        } else {
+
+            anios = 0;
+
+        }
+        $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+
+        for (var i = 0; i < prendasStock.length; i++) {
+            var act1 = prendasStock[i];
+            var tipoPrenda = act1[0];
+            var marca = act1[1];
+            var stock = act1[2];
+            var precioVenta = act1[3];
+            var codVenta = '<input type="number" min="0" value="' + precioVenta + '" class="form-control" style="width:60%" id="Ven' + i + '">';
+
+            $('<tr class="Reg R1' + i + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + i + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + i + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPrendasStock');
+
+            var act1 = prendasCompra[i];
+            var tipoPrenda = act1[0];
+            var marca = act1[1];
+            var precioVenta = act1[2];
+            var stock = act1[3];
+            var codVenta = '<input type="number" min="0" value="0" class="form-control" style="width:60%" id="Comp' + i + '">';
+
+            $('<tr class="Reg R2' + i + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>$' + precioVenta + '.00</td><td>' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + i + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaCompraPrendas');
+
+        }
+
+        if (anios < 2) {
+            totalPagaEmpleados = 0;
+            for (var i = 0; i < empleados.length; i++) {
+                var act = empleados[i];
+                if (act[3] == 1) {
+
+                    totalPagaEmpleados = totalPagaEmpleados + act[5];
+                }
+            }
+            var inter = setInterval(function() {
+
+                if (anios == 2) {
+                    clearInterval(inter);
+                    dias = dias - 1;
+                }
+
+                if (dias >= 7) {
+                    dias = 0;
+                    semanas = semanas + 1;
+                    if (semanas >= 5) {
+                        semanas = 1;
+                        dinero = dinero - totalPagaEmpleados;
+                        meses = meses + 1;
+                        data.push(Math.floor(Math.random() * 100));
+                        if (meses >= 13) {
+                            meses = 1;
+                            anios = anios + 1;
+                            var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
+                            dataAnios.push(arrAux);
+                            data.length = 0;
+                            data.push(Math.floor(Math.random() * 100));
+                        }
+                    }
+                }
+                dias = dias + 1;
+                $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+
+            }, pasoDeTiempo);
+        }
+
+        function confirmExit() {
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.dias = dias;
+                sessionStorage.semanas = semanas;
+                sessionStorage.meses = meses;
+                sessionStorage.anios = anios;
+                sessionStorage.dinero = dinero;
+                sessionStorage.setItem("datosTabla", JSON.stringify(data));
+                sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
+                sessionStorage.setItem("empleados", JSON.stringify(empleados));
+            } else {
+                return ("Actualize su navegador, o de lo contrario el juego no funcionará");
+            }
+
+        }
+    </script>
 
 </body>
 </html>

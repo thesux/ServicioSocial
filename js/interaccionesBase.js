@@ -63,8 +63,8 @@ if (sessionStorage.getItem("empleados") == null) {
 }
 
 if (sessionStorage.getItem("prendasStock") == null) {
-  var pren1 = ["Tenis", "Converse", 0, 0];
-  var prendasStock = new Array(pren1);
+    var pren1 = ["Tenis", "Converse", 0, 0];
+    var prendasStock = new Array(pren1);
 } else {
 
     var prendasStock = JSON.parse(sessionStorage.getItem("prendasStock"));
@@ -72,8 +72,8 @@ if (sessionStorage.getItem("prendasStock") == null) {
 }
 
 if (sessionStorage.getItem("prendasCompra") == null) {
-  var prencomp1 = ["Tenis", "Converse", 700, 100];
-  var prendasCompra = new Array(prencomp1);
+    var prencomp1 = ["Tenis", "Converse", 700, 100];
+    var prendasCompra = new Array(prencomp1);
 } else {
 
     var prendasCompra = JSON.parse(sessionStorage.getItem("prendasCompra"));

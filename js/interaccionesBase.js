@@ -146,6 +146,10 @@ if (anios < 2) {
             if (semanas >= 5) {
                 semanas = 1;
                 dinero = dinero - totalPagaEmpleados;
+                for (var i = 0; i < prendasCompra.length; i++) {
+                    masStock = Math.floor((Math.random() * 20) + 0);
+                    prendasCompra[i][3] = prendasCompra[i][3] + masStock;
+                }
                 meses = meses + 1;
                 data.push(Math.floor(Math.random() * 100));
                 if (meses >= 13) {

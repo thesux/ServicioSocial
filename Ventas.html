@@ -472,6 +472,15 @@
                     if (semanas >= 5) {
                         semanas = 1;
                         dinero = dinero - totalPagaEmpleados;
+
+                        for (var i = 0; i < prendasCompra.length; i++) {
+                            masStock = Math.floor((Math.random() * 20) + 0);
+                            prendasCompra[i][3] = prendasCompra[i][3] + masStock;
+                            var codVenta = '<input type="number" min="0" max="' + prendasCompra[i][3] + '" value="0" class="form-control" style="width:60%" id="Comp' + i + '">';
+
+                            $('tr.R2' + i).replaceWith('<tr class="Reg R2' + i + '"><td>' + prendasCompra[i][0] + '</td><td>' + prendasCompra[i][1] + '</td><td>$' + prendasCompra[i][2] + '.00</td><td>' + prendasCompra[i][3] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + i + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>');
+                        }
+
                         meses = meses + 1;
                         data.push(Math.floor(Math.random() * 100));
                         if (meses >= 13) {

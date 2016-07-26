@@ -320,7 +320,7 @@
         }
 
         if (sessionStorage.getItem("prendasStock") == null) {
-            var pren1 = ["Tenis", "Converse", 0, 0];
+            var pren1 = ["Tenis", "Converse", 5, 5];
             var prendasStock = new Array(pren1);
         } else {
 
@@ -561,11 +561,11 @@
 
         $.fn.Actualizar = function(id) {
             var precioVenta = parseInt($("#Ven" + id).val());
-            prendasStock[id][2] = precioVenta;
+            prendasStock[id][3] = precioVenta;
 
-            var codVenta = '<input type="number" min="0" value="' + precioVenta + '" class="form-control" style="width:60%" id="Ven' + id + '">';
+            var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
 
-            $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td>0</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+            $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td>' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
         };
 
         $('#myModal').on('shown.bs.modal', function() {

@@ -434,7 +434,7 @@
             var marca = act1[1];
             var precioVenta = act1[2];
             var stock = act1[3];
-            var codVenta = '<input type="number" min="0" max="'+stock+'" value="0" class="form-control" style="width:60%" id="Comp' + i + '">';
+            var codVenta = '<input type="number" min="0" max="' + stock + '" value="0" class="form-control" style="width:60%" id="Comp' + i + '">';
 
             $('<tr class="Reg R2' + i + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>$' + precioVenta + '.00</td><td>' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + i + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaCompraPrendas');
 
@@ -496,7 +496,7 @@
             var prennuevo = [tipoPrenda, marca, precio, stock];
             prendasCompra.push(prennuevo);
 
-            var codVenta = '<input type="number" min="0" max="'+stock+'" value="0" class="form-control" style="width:60%" id="Comp' + sig + '">';
+            var codVenta = '<input type="number" min="0" max="' + stock + '" value="0" class="form-control" style="width:60%" id="Comp' + sig + '">';
 
             $('<tr class="Reg R2' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>$' + precio + '.00</td><td>' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaCompraPrendas');
 
@@ -522,25 +522,22 @@
         };
 
         $.fn.Comprar = function(id) {
-          var cantidad = parseInt($("#Comp" + id).val());
-          if(cantidad>0)
-          {
-            prendasCompra[id][3]=prendasCompra[id][3]-cantidad;
-            prendasStock[id][2]=prendasStock[id][2]+cantidad;
-            totalPagar=cantidad*prendasCompra[id][2];
-            dinero=dinero-totalPagar;
+            var cantidad = parseInt($("#Comp" + id).val());
+            if (cantidad > 0) {
+                prendasCompra[id][3] = prendasCompra[id][3] - cantidad;
+                prendasStock[id][2] = prendasStock[id][2] + cantidad;
+                totalPagar = cantidad * prendasCompra[id][2];
+                dinero = dinero - totalPagar;
 
-            var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
+                var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
 
-            $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td>'+ prendasStock[id][2] +'</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+                $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td>' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
 
+                var codVenta = '<input type="number" min="0" max="' + prendasCompra[id][3] + '" value="0" class="form-control" style="width:60%" id="Comp' + id + '">';
 
-            var codVenta = '<input type="number" min="0" max="'+prendasCompra[id][3]+'" value="0" class="form-control" style="width:60%" id="Comp' + id + '">';
+                $('tr.R2' + id).replaceWith('<tr class="Reg R2' + id + '"><td>' + prendasCompra[id][0] + '</td><td>' + prendasCompra[id][1] + '</td><td>$' + prendasCompra[id][2] + '.00</td><td>' + prendasCompra[id][3] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>');
 
-            $('tr.R2' + id).replaceWith('<tr class="Reg R2' + id + '"><td>' + prendasCompra[id][0] + '</td><td>' + prendasCompra[id][1] + '</td><td>$' + prendasCompra[id][2] + '.00</td><td>' + prendasCompra[id][3] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>');
-
-
-          }
+            }
         };
 
         $.fn.Actualizar = function(id) {

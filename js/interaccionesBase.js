@@ -62,6 +62,23 @@ if (sessionStorage.getItem("empleados") == null) {
 
 }
 
+if (sessionStorage.getItem("prendasStock") == null) {
+  var pren1 = ["Tenis", "Converse", 0, 0];
+  var prendasStock = new Array(pren1);
+} else {
+
+    var prendasStock = JSON.parse(sessionStorage.getItem("prendasStock"));
+
+}
+
+if (sessionStorage.getItem("prendasCompra") == null) {
+  var prencomp1 = ["Tenis", "Converse", 700, 100];
+  var prendasCompra = new Array(prencomp1);
+} else {
+
+    var prendasCompra = JSON.parse(sessionStorage.getItem("prendasCompra"));
+}
+
 if (sessionStorage.dinero) {
     dinero = Number(sessionStorage.dinero);
 } else {
@@ -160,6 +177,8 @@ function confirmExit() {
         sessionStorage.setItem("datosTabla", JSON.stringify(data));
         sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
         sessionStorage.setItem("empleados", JSON.stringify(empleados));
+        sessionStorage.setItem("prendasStock", JSON.stringify(prendasStock));
+        sessionStorage.setItem("prendasCompra", JSON.stringify(prendasCompra));
     } else {
         return ("Actualize su navegador, o de lo contrario el juego no funcionará");
     }

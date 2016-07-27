@@ -37,8 +37,7 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user"></i>
-                                Usuario Ejemplo
+                                <i class="icon-user"></i> Usuario Ejemplo
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -367,13 +366,12 @@
 
         }
         $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
-        if(dinero==0)
-        {
-          $("#estatus").text("Neutro");
-        }else if (dinero<0){
-          $("#estatus").text("Perdiendo");
-        }else {
-          $("#estatus").text("Ganando");
+        if (dinero == 0) {
+            $("#estatus").text("Neutro");
+        } else if (dinero < 0) {
+            $("#estatus").text("Perdiendo");
+        } else {
+            $("#estatus").text("Ganando");
         }
 
         var lineChartData = {
@@ -391,15 +389,13 @@
                 "Noviembre",
                 "Diciembre "
             ],
-            datasets: [
-                {
-                    fillColor: "rgba(75, 208, 63, 0.5)",
-                    strokeColor: "rgba(0, 255, 33, 1)",
-                    pointColor: "rgba(27, 102, 1, 1)",
-                    pointStrokeColor: "#fff",
-                    data: data
-                }
-            ]
+            datasets: [{
+                fillColor: "rgba(75, 208, 63, 0.5)",
+                strokeColor: "rgba(0, 255, 33, 1)",
+                pointColor: "rgba(27, 102, 1, 1)",
+                pointStrokeColor: "#fff",
+                data: data
+            }]
 
         }
 
@@ -418,13 +414,12 @@
                     dias = dias - 1;
                     $("#estatus").text("Finalizado");
                 }
-                if(dinero==0)
-                {
-                  $("#estatus").text("Neutro");
-                }else if (dinero<0){
-                  $("#estatus").text("Perdiendo");
-                }else {
-                  $("#estatus").text("Ganando");
+                if (dinero == 0) {
+                    $("#estatus").text("Neutro");
+                } else if (dinero < 0) {
+                    $("#estatus").text("Perdiendo");
+                } else {
+                    $("#estatus").text("Ganando");
                 }
 
 

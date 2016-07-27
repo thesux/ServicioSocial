@@ -437,6 +437,8 @@
                     dias = dias - 1;
                 }
 
+                generarVentasDia();
+
                 if (dias >= 7) {
                     dias = 0;
                     semanas = semanas + 1;
@@ -449,14 +451,14 @@
                             prendasCompra[i][3] = prendasCompra[i][3] + masStock;
                         }
                         meses = meses + 1;
-                        data.push(Math.floor(Math.random() * 100));
+                        data.push(0);
                         if (meses >= 13) {
                             meses = 1;
                             anios = anios + 1;
                             var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
                             dataAnios.push(arrAux);
                             data.length = 0;
-                            data.push(Math.floor(Math.random() * 100));
+                            data.push(0);
                         }
                     }
                 }
@@ -586,6 +588,42 @@
             $("#txtAp").val('');
 
         };
+
+        function generarVentasDia() {
+            personas = Math.floor((Math.random() * 200) + 10);
+
+            for (var y = 1; y <= personas; y++) {
+                probEntrar = Math.random();
+
+                if ((probEntrar >= 0) && (probEntrar <= 0.1)) {
+                    for (var i = 0; i < prendasStock.length; i++) {
+                        compra = 1;
+                        while (compra == 1) {
+                            probComprar = Math.random();
+                            if ((probComprar >= 0) && (probComprar <= 0.05)) {
+                                if (prendasStock[i][2] > 0) {
+                                    data[meses - 1] = data[meses - 1] + 1;
+                                    prendasStock[i][2] = prendasStock[i][2] - 1;
+                                    dinero = dinero + prendasStock[i][3];
+                                    volverComprar = Math.random();
+                                    if ((volverComprar >= 0) && (volverComprar <= 0.02)) {
+                                        compra = 1;
+                                    } else {
+                                        compra = 0;
+                                    }
+
+                                } else {
+                                    compra = 0;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+        }
 
         $('#myModal').on('shown.bs.modal', function() {
             $('#myInput').focus()

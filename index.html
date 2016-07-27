@@ -411,7 +411,7 @@
                     $("#estatus").text("Finalizado");
                 }
 
-                generarVentasDia();
+
 
                 if (dias >= 7) {
                     dias = 0;
@@ -438,6 +438,7 @@
                         }
                     }
                 }
+                generarVentasDia();
                 dias = dias + 1;
                 $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
 

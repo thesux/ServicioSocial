@@ -121,7 +121,7 @@
 
                                             <div class="stat">
                                                 <i class="icon-info"></i>
-                                                <span class="value" id="estatus">Ganando
+                                                <span class="value" id="estatus">
                                                 </span>
                                             </div>
                                         </div>
@@ -367,6 +367,12 @@
 
         }
         $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+        if(dinero<0)
+        {
+          $("#estatus").text("Perdiendo");
+        }else {
+          $("#estatus").text("Ganando");
+        }
 
         var lineChartData = {
             labels: [
@@ -409,6 +415,12 @@
                     clearInterval(inter);
                     dias = dias - 1;
                     $("#estatus").text("Finalizado");
+                }
+                if(dinero<0)
+                {
+                  $("#estatus").text("Perdiendo");
+                }else {
+                  $("#estatus").text("Ganando");
                 }
 
 

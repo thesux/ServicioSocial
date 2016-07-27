@@ -367,8 +367,10 @@
 
         }
         $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
-        if(dinero<0)
+        if(dinero==0)
         {
+          $("#estatus").text("Neutro");
+        }else if (dinero<0){
           $("#estatus").text("Perdiendo");
         }else {
           $("#estatus").text("Ganando");
@@ -416,8 +418,10 @@
                     dias = dias - 1;
                     $("#estatus").text("Finalizado");
                 }
-                if(dinero<0)
+                if(dinero==0)
                 {
+                  $("#estatus").text("Neutro");
+                }else if (dinero<0){
                   $("#estatus").text("Perdiendo");
                 }else {
                   $("#estatus").text("Ganando");

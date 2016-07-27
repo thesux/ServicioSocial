@@ -437,7 +437,7 @@
             var precioVenta = act1[3];
             var codVenta = '<input type="number" min="0" value="' + precioVenta + '" class="form-control" style="width:60%" id="Ven' + i + '">';
 
-            $('<tr class="Reg R1' + i + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + i + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + i + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPrendasStock');
+            $('<tr class="Reg R1' + i + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td id="S'+i+'">' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + i + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + i + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPrendasStock');
 
             var act1 = prendasCompra[i];
             var tipoPrenda = act1[0];
@@ -465,6 +465,8 @@
                     clearInterval(inter);
                     dias = dias - 1;
                 }
+
+                generarVentasDia();
 
                 if (dias >= 7) {
                     dias = 0;
@@ -508,7 +510,7 @@
 
             var codVenta = '<input type="number" min="0" value="0" class="form-control" style="width:60%" id="Ven' + sig + '">';
 
-            $('<tr class="Reg R1' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>0</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + sig + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPrendasStock');
+            $('<tr class="Reg R1' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td id="S'+sig+'">0</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + sig + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPrendasStock');
 
             precio = Math.floor((Math.random() * 1000) + 100);
             stock = Math.floor((Math.random() * 100) + 10);
@@ -550,7 +552,7 @@
 
                 var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
 
-                $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td>' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+                $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td id="S'+id+'">' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
 
                 var codVenta = '<input type="number" min="0" max="' + prendasCompra[id][3] + '" value="0" class="form-control" style="width:60%" id="Comp' + id + '">';
 
@@ -565,12 +567,49 @@
 
             var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
 
-            $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td>' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+            $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td id="S'+id+'">' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
         };
 
         $('#myModal').on('shown.bs.modal', function() {
             $('#myInput').focus()
         })
+
+        function generarVentasDia() {
+            personas = Math.floor((Math.random() * 200) + 10);
+
+            for (var y = 1; y <= personas; y++) {
+                probEntrar = Math.random();
+
+                if ((probEntrar >= 0) && (probEntrar <= 0.1)) {
+                    for (var i = 0; i < prendasStock.length; i++) {
+                        compra = 1;
+                        while (compra == 1) {
+                            probComprar = Math.random();
+                            if ((probComprar >= 0) && (probComprar <= 0.05)) {
+                                if (prendasStock[i][2] > 0) {
+                                    data[meses - 1] = data[meses - 1] + 1;
+                                    prendasStock[i][2] = prendasStock[i][2] - 1;
+                                    $('#S' + i).html(prendasStock[i][2]);
+                                    dinero = dinero + prendasStock[i][3];
+                                    volverComprar = Math.random();
+                                    if ((volverComprar >= 0) && (volverComprar <= 0.02)) {
+                                        compra = 1;
+                                    } else {
+                                        compra = 0;
+                                    }
+
+                                } else {
+                                    compra = 0;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+        }
 
         function confirmExit() {
             if (typeof(Storage) !== "undefined") {

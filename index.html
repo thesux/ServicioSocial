@@ -111,12 +111,12 @@
 
                                             <div class="stat">
                                                 <i class="icon-thumbs-up-alt"></i>
-                                                <span class="value">423</span>
+                                                <span class="value" id="publiActiva">423</span>
                                             </div>
 
                                             <div class="stat">
                                                 <i class="icon-male"></i>
-                                                <span class="value">922</span>
+                                                <span class="value" id="personasEntran">0</span>
                                             </div>
 
                                             <div class="stat">
@@ -280,7 +280,8 @@
             dinero = 70000;
 
         }
-        $('#totalCuenta').text(dinero);
+
+
 
         if (sessionStorage.semanas) {
             semanas = Number(sessionStorage.semanas);
@@ -296,6 +297,12 @@
             meses = 1;
 
         }
+        if (sessionStorage.personasEntrantes) {
+            personasEntrantes = Number(sessionStorage.personasEntrantes);
+        } else {
+
+            personasEntrantes = 0;
+        }
         if (sessionStorage.anios) {
             anios = Number(sessionStorage.anios);
         } else {
@@ -303,6 +310,9 @@
             anios = 0;
 
         }
+        $('#totalCuenta').text(dinero);
+        $('#personasEntran').text(personasEntrantes);
+        $('#publiActiva').text(catPublicidad.length);
         $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
         if (dinero == 0) {
             $("#estatus").text("Neutro");
@@ -411,6 +421,8 @@
                 probEntrar = Math.random();
 
                 if ((probEntrar >= 0) && (probEntrar <= 0.1)) {
+                  personasEntrantes=personasEntrantes+1;
+                  $('#personasEntran').text(personasEntrantes);
                     for (var i = 0; i < prendasStock.length; i++) {
                         compra = 1;
                         while (compra == 1) {
@@ -448,6 +460,7 @@
                 sessionStorage.meses = meses;
                 sessionStorage.anios = anios;
                 sessionStorage.dinero = dinero;
+                sessionStorage.personasEntrantes = personasEntrantes;
                 sessionStorage.setItem("datosTabla", JSON.stringify(data));
                 sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
                 sessionStorage.setItem("empleados", JSON.stringify(empleados));

@@ -341,6 +341,12 @@
             semanas = 0;
 
         }
+        if (sessionStorage.personasEntrantes) {
+            personasEntrantes = Number(sessionStorage.personasEntrantes);
+        } else {
+
+            personasEntrantes = 0;
+        }
         if (sessionStorage.meses) {
             meses = Number(sessionStorage.meses);
         } else {
@@ -514,6 +520,7 @@
                 probEntrar = Math.random();
 
                 if ((probEntrar >= 0) && (probEntrar <= 0.1)) {
+                  personasEntrantes=personasEntrantes+1;
                     for (var i = 0; i < prendasStock.length; i++) {
                         compra = 1;
                         while (compra == 1) {
@@ -551,11 +558,13 @@
                 sessionStorage.meses = meses;
                 sessionStorage.anios = anios;
                 sessionStorage.dinero = dinero;
+                sessionStorage.personasEntrantes = personasEntrantes;
                 sessionStorage.setItem("datosTabla", JSON.stringify(data));
                 sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
                 sessionStorage.setItem("empleados", JSON.stringify(empleados));
                 sessionStorage.setItem("prendasStock", JSON.stringify(prendasStock));
                 sessionStorage.setItem("prendasCompra", JSON.stringify(prendasCompra));
+                sessionStorage.setItem("catPublicidad", JSON.stringify(catPublicidad));
             } else {
                 return ("Actualize su navegador, o de lo contrario el juego no funcionará");
             }

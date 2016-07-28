@@ -148,9 +148,7 @@
             </div>
         </div>
     </div>
-    <div class="extra">
-
-    </div>
+    <div class="extra"></div>
     <div class="footer">
         <div class="footer-inner">
             <div class="container">
@@ -280,8 +278,6 @@
             dinero = 70000;
 
         }
-
-
 
         if (sessionStorage.semanas) {
             semanas = Number(sessionStorage.semanas);
@@ -421,8 +417,8 @@
                 probEntrar = Math.random();
 
                 if ((probEntrar >= 0) && (probEntrar <= 0.1)) {
-                  personasEntrantes=personasEntrantes+1;
-                  $('#personasEntran').text(personasEntrantes);
+                    personasEntrantes = personasEntrantes + 1;
+                    $('#personasEntran').text(personasEntrantes);
                     for (var i = 0; i < prendasStock.length; i++) {
                         compra = 1;
                         while (compra == 1) {

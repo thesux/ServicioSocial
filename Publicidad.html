@@ -436,6 +436,11 @@
                     totalPagaEmpleados = totalPagaEmpleados + act[5];
                 }
             }
+            totalPagaPublicidad = 0;
+            for (var i = 0; i < catPublicidad.length; i++) {
+                var act = catPublicidad[i];
+                totalPagaPublicidad = totalPagaPublicidad + act[2];
+            }
             var inter = setInterval(function() {
 
                 if (anios == 2) {
@@ -450,7 +455,7 @@
                     semanas = semanas + 1;
                     if (semanas >= 5) {
                         semanas = 1;
-                        dinero = dinero - totalPagaEmpleados;
+                        dinero = dinero - totalPagaEmpleados - totalPagaPublicidad;
                         for (var i = 0; i < prendasCompra.length; i++) {
                             masStock = Math.floor((Math.random() * 20) + 0);
                             prendasCompra[i][3] = prendasCompra[i][3] + masStock;
@@ -548,6 +553,12 @@
             var sig = catPublicidad.length;
             catPublicidad.push(pubnueva);
 
+            totalPagaPublicidad = 0;
+            for (var i = 0; i < catPublicidad.length; i++) {
+                var act = catPublicidad[i];
+                totalPagaPublicidad = totalPagaPublicidad + act[2];
+            }
+
             $('<tr class="Reg R' + sig + '"><td>' + tipo + '</td><td>' + nombre + '</td><td>$' + costo + '.00</td><td class="td-actions"><button class="btn btn-small btn-danger" onClick="$(this).Cancelar(' + sig + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPublicidad');
 
         };
@@ -560,6 +571,13 @@
             if (index > -1) {
                 catPublicidad.splice(index, 1);
             }
+
+            totalPagaPublicidad = 0;
+            for (var i = 0; i < catPublicidad.length; i++) {
+                var act = catPublicidad[i];
+                totalPagaPublicidad = totalPagaPublicidad + act[2];
+            }
+
         };
 
         function confirmExit() {

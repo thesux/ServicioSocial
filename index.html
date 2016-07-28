@@ -418,6 +418,12 @@
                     totalPagaEmpleados = totalPagaEmpleados + act[5];
                 }
             }
+
+            totalPagaPublicidad = 0;
+            for (var i = 0; i < catPublicidad.length; i++) {
+                var act = catPublicidad[i];
+                totalPagaPublicidad = totalPagaPublicidad + act[2];
+            }
             var inter = setInterval(function() {
                 if (anios == 2) {
                     clearInterval(inter);
@@ -437,7 +443,7 @@
                     semanas = semanas + 1;
                     if (semanas >= 5) {
                         semanas = 1;
-                        dinero = dinero - totalPagaEmpleados;
+                        dinero = dinero - totalPagaEmpleados - totalPagaPublicidad;
                         $('#totalCuenta').text(dinero);
                         for (var i = 0; i < prendasCompra.length; i++) {
                             masStock = Math.floor((Math.random() * 20) + 0);

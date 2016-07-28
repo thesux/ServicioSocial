@@ -467,6 +467,11 @@
                     totalPagaEmpleados = totalPagaEmpleados + act[5];
                 }
             }
+            totalPagaPublicidad = 0;
+            for (var i = 0; i < catPublicidad.length; i++) {
+                var act = catPublicidad[i];
+                totalPagaPublicidad = totalPagaPublicidad + act[2];
+            }
             var inter = setInterval(function() {
 
                 if (anios == 2) {

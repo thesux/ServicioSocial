@@ -403,6 +403,12 @@
                     totalPagaEmpleados = totalPagaEmpleados + act[5];
                 }
             }
+
+            totalPagaPublicidad = 0;
+            for (var i = 0; i < catPublicidad.length; i++) {
+                var act = catPublicidad[i];
+                totalPagaPublicidad = totalPagaPublicidad + act[2];
+            }
             var inter = setInterval(function() {
                 if (anios == 2) {
                     clearInterval(inter);
@@ -422,7 +428,7 @@
                         data.push(0);
                         if (meses >= 13) {
                             meses = 1;
-                            dinero = dinero - totalPagaEmpleados;
+                            dinero = dinero - totalPagaEmpleados - totalPagaPublicidad;
                             anios = anios + 1;
                             var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
                             dataAnios.push(arrAux);

@@ -300,14 +300,12 @@
         }
 
         if (sessionStorage.getItem("catPublicidad") == null) {
-          pub1 = ["Internet", "Publicidad en facebook", 500];
+            pub1 = ["Internet", "Publicidad en facebook", 500];
 
-          var catPublicidad = new Array(pub1);
+            var catPublicidad = new Array(pub1);
         } else {
             var catPublicidad = JSON.parse(sessionStorage.getItem("catPublicidad"));
         }
-
-
 
         if (sessionStorage.getItem("empleados") == null) {
             var emp1 = [

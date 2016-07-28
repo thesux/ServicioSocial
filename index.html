@@ -37,7 +37,8 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user"></i> Usuario Ejemplo
+                                <i class="icon-user"></i>
+                                Usuario Ejemplo
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -120,8 +121,7 @@
 
                                             <div class="stat">
                                                 <i class="icon-info"></i>
-                                                <span class="value" id="estatus">
-                                                </span>
+                                                <span class="value" id="estatus"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -329,9 +329,9 @@
         }
 
         if (sessionStorage.getItem("catPublicidad") == null) {
-          pub1 = ["Internet", "Publicidad en facebook", 500];
+            pub1 = ["Internet", "Publicidad en facebook", 500];
 
-          var catPublicidad = new Array(pub1);
+            var catPublicidad = new Array(pub1);
         } else {
             var catPublicidad = JSON.parse(sessionStorage.getItem("catPublicidad"));
         }
@@ -397,13 +397,15 @@
                 "Noviembre",
                 "Diciembre "
             ],
-            datasets: [{
-                fillColor: "rgba(75, 208, 63, 0.5)",
-                strokeColor: "rgba(0, 255, 33, 1)",
-                pointColor: "rgba(27, 102, 1, 1)",
-                pointStrokeColor: "#fff",
-                data: data
-            }]
+            datasets: [
+                {
+                    fillColor: "rgba(75, 208, 63, 0.5)",
+                    strokeColor: "rgba(0, 255, 33, 1)",
+                    pointColor: "rgba(27, 102, 1, 1)",
+                    pointStrokeColor: "#fff",
+                    data: data
+                }
+            ]
 
         }
 
@@ -429,8 +431,6 @@
                 } else {
                     $("#estatus").text("Ganando");
                 }
-
-
 
                 if (dias >= 7) {
                     dias = 0;
@@ -507,17 +507,17 @@
 
         function confirmExit() {
             if (typeof(Storage) !== "undefined") {
-              sessionStorage.dias = dias;
-              sessionStorage.semanas = semanas;
-              sessionStorage.meses = meses;
-              sessionStorage.anios = anios;
-              sessionStorage.dinero = dinero;
-              sessionStorage.setItem("datosTabla", JSON.stringify(data));
-              sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
-              sessionStorage.setItem("empleados", JSON.stringify(empleados));
-              sessionStorage.setItem("prendasStock", JSON.stringify(prendasStock));
-              sessionStorage.setItem("prendasCompra", JSON.stringify(prendasCompra));
-              sessionStorage.setItem("catPublicidad", JSON.stringify(catPublicidad));
+                sessionStorage.dias = dias;
+                sessionStorage.semanas = semanas;
+                sessionStorage.meses = meses;
+                sessionStorage.anios = anios;
+                sessionStorage.dinero = dinero;
+                sessionStorage.setItem("datosTabla", JSON.stringify(data));
+                sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
+                sessionStorage.setItem("empleados", JSON.stringify(empleados));
+                sessionStorage.setItem("prendasStock", JSON.stringify(prendasStock));
+                sessionStorage.setItem("prendasCompra", JSON.stringify(prendasCompra));
+                sessionStorage.setItem("catPublicidad", JSON.stringify(catPublicidad));
             } else {
                 return ("Actualize su navegador, o de lo contrario el juego no funcionará");
             }

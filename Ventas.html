@@ -399,6 +399,14 @@
             dinero = 70000;
 
         }
+
+        if (sessionStorage.getItem("catPublicidad") == null) {
+          pub1 = ["Internet", "Publicidad en facebook", 500];
+
+          var catPublicidad = new Array(pub1);
+        } else {
+            var catPublicidad = JSON.parse(sessionStorage.getItem("catPublicidad"));
+        }
         if (sessionStorage.dias) {
             dias = Number(sessionStorage.dias);
         } else {
@@ -531,12 +539,12 @@
             $('tr.R1' + id).replaceWith('');
             $('tr.R2' + id).replaceWith('');
 
-            var index = prendasStock.indexOf(id);
+            var index = prendasStock.indexOf(prendasStock[id]);
             if (index > -1) {
                 prendasStock.splice(index, 1);
             }
 
-            var index = prendasCompra.indexOf(id);
+            var index = prendasCompra.indexOf(prendasCompra[id]);
             if (index > -1) {
                 prendasCompra.splice(index, 1);
             }

@@ -328,6 +328,14 @@
             var prendasCompra = JSON.parse(sessionStorage.getItem("prendasCompra"));
         }
 
+        if (sessionStorage.getItem("catPublicidad") == null) {
+          pub1 = ["Internet", "Publicidad en facebook", 500];
+
+          var catPublicidad = new Array(pub1);
+        } else {
+            var catPublicidad = JSON.parse(sessionStorage.getItem("catPublicidad"));
+        }
+
         if (sessionStorage.dias) {
             dias = Number(sessionStorage.dias);
         } else {
@@ -499,16 +507,17 @@
 
         function confirmExit() {
             if (typeof(Storage) !== "undefined") {
-                sessionStorage.dias = dias;
-                sessionStorage.semanas = semanas;
-                sessionStorage.meses = meses;
-                sessionStorage.anios = anios;
-                sessionStorage.dinero = dinero;
-                sessionStorage.setItem("datosTabla", JSON.stringify(data));
-                sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
-                sessionStorage.setItem("empleados", JSON.stringify(empleados));
-                sessionStorage.setItem("prendasStock", JSON.stringify(prendasStock));
-                sessionStorage.setItem("prendasCompra", JSON.stringify(prendasCompra));
+              sessionStorage.dias = dias;
+              sessionStorage.semanas = semanas;
+              sessionStorage.meses = meses;
+              sessionStorage.anios = anios;
+              sessionStorage.dinero = dinero;
+              sessionStorage.setItem("datosTabla", JSON.stringify(data));
+              sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
+              sessionStorage.setItem("empleados", JSON.stringify(empleados));
+              sessionStorage.setItem("prendasStock", JSON.stringify(prendasStock));
+              sessionStorage.setItem("prendasCompra", JSON.stringify(prendasCompra));
+              sessionStorage.setItem("catPublicidad", JSON.stringify(catPublicidad));
             } else {
                 return ("Actualize su navegador, o de lo contrario el juego no funcionará");
             }

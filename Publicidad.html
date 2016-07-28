@@ -1,356 +1,588 @@
 <!DOCTYPE html>
 <html lang="es-MX">
-    <head>
-        <meta charset="utf-8">
-        <title>Reports - Bootstrap Admin Template</title>
+<head>
+    <meta charset="utf-8">
+    <title>Reports - Bootstrap Admin Template</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-        <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
 
-        <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
-        <link href="css/pages/reports.css" rel="stylesheet">
+    <link href="css/pages/reports.css" rel="stylesheet">
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="index.html">Business Strategy Game Simulation
-                    </a>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="index.html">Business Strategy Game Simulation
+                </a>
 
-                    <div class="nav-collapse">
-                        <ul class="nav pull-right">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icon-time"></i>
-                                    <b id="tiempoJuego">Semanas: 0 Dias: 0</b>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icon-user"></i>
-                                    Usuario Ejemplo
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:;">Cerrar sesion</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="subnavbar">
-            <div class="subnavbar-inner">
-                <div class="container">
-                    <ul class="mainnav">
-                        <li>
-                            <a href="index.html">
-                                <i class="icon-dashboard"></i>
-                                <span>Principal</span>
+                <div class="nav-collapse">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-time"></i>
+                                <b id="tiempoJuego">Semanas: 0 Dias: 0</b>
                             </a>
                         </li>
-                        <li>
-                            <a href="Ventas.html">
-                                <i class="icon-bar-chart"></i>
-                                <span>Ventas</span>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user"></i>
+                                Usuario Ejemplo
+                                <b class="caret"></b>
                             </a>
-                        </li>
-                        <li>
-                            <a href="Admon.html">
-                                <i class="icon-file-text"></i>
-                                <span>Administracion</span>
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="Publicidad.html">
-                                <i class="icon-bullhorn"></i>
-                                <span>Publicidad</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Finanzas.html">
-                                <i class="icon-usd"></i>
-                                <span>Finanzas</span>
-                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript:;">Cerrar sesion</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="subnavbar">
+        <div class="subnavbar-inner">
+            <div class="container">
+                <ul class="mainnav">
+                    <li>
+                        <a href="index.html">
+                            <i class="icon-dashboard"></i>
+                            <span>Principal</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Ventas.html">
+                            <i class="icon-bar-chart"></i>
+                            <span>Ventas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Admon.html">
+                            <i class="icon-file-text"></i>
+                            <span>Administracion</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="Publicidad.html">
+                            <i class="icon-bullhorn"></i>
+                            <span>Publicidad</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Finanzas.html">
+                            <i class="icon-usd"></i>
+                            <span>Finanzas</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="main">
+        <div class="main-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="span9">
+                        <div class="widget-header">
+                            <i class="icon-list-alt"></i>
+                            <h3>Publicidad</h3>
+                        </div>
+                        <div class="widget-content">
+                            <button class="btn btn-small btn-success" data-toggle="modal" data-target="#myModal">Agregar publicidad</button>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Tipo
+                                        </th>
+                                        <th>
+                                            Nombre
+                                        </th>
+                                        <th>
+                                            Costo Mensual
+                                        </th>
+                                        <th class="td-actions"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaPublicidad"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
 
             </div>
 
         </div>
 
-        <div class="main">
+    </div>
 
-            <div class="main-inner">
-
-                <div class="container">
-
-                    <div class="row">
-
-                        <div class="span12">
-
-                            <div class="info-box">
-                                <div class="row-fluid stats-box">
-                                    <div class="span4">
-                                        <div class="stats-box-title">Visitantes</div>
-                                        <div class="stats-box-all-info">
-                                            <i class="icon-user" style="color:#3366cc;"></i>
-                                            555K</div>
-                                        <div class="wrap-chart">
-                                            <div id="visitor-stat" class="chart" style="padding: 0px; position: relative;">
-                                                <canvas id="bar-chart1" class="chart-holder" height="150" width="325"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="span4">
-                                        <div class="stats-box-title">Likes</div>
-                                        <div class="stats-box-all-info">
-                                            <i class="icon-thumbs-up" style="color:#F30"></i>
-                                            66.66</div>
-                                        <div class="wrap-chart">
-                                            <div id="order-stat" class="chart" style="padding: 0px; position: relative;">
-                                                <canvas id="bar-chart2" class="chart-holder" height="150" width="325"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="span4">
-                                        <div class="stats-box-title">Compras</div>
-                                        <div class="stats-box-all-info">
-                                            <i class="icon-shopping-cart" style="color:#3C3"></i>
-                                            15.55</div>
-                                        <div class="wrap-chart">
-
-                                            <div id="user-stat" class="chart" style="padding: 0px; position: relative;">
-                                                <canvas id="bar-chart3" class="chart-holder" height="150" width="325"></canvas>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
+    <div class="extra">
+        <div class="extra-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <h4>
+                            About Free Admin Template</h4>
+                        <ul>
+                            <li>
+                                <a href="javascript:;">EGrappler.com</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Web Development Resources</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Responsive HTML5 Portfolio Templates</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Free Resources and Scripts</a>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="row">
-
-                        <div class="span6">
-
-                            <div class="widget">
-
-                                <div class="widget-header">
-                                    <i class="icon-user"></i>
-                                    <h3>Generos</h3>
-                                </div>
-
-                                <div class="widget-content">
-                                    <canvas id="pie-chart" class="chart-holder" height="250" width="538"></canvas>
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                    <div class="span3">
+                        <h4>
+                            Support</h4>
+                        <ul>
+                            <li>
+                                <a href="javascript:;">Frequently Asked Questions</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Ask a Question</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Video Tutorial</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Feedback</a>
+                            </li>
+                        </ul>
                     </div>
 
-                </div>
+                    <div class="span3">
+                        <h4>
+                            Something Legal</h4>
+                        <ul>
+                            <li>
+                                <a href="javascript:;">Read License</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Terms of Use</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Privacy Policy</a>
+                            </li>
+                        </ul>
+                    </div>
 
-            </div>
-
-            <div class="extra">
-
-                <div class="extra-inner">
-
-                    <div class="container">
-
-                        <div class="row">
-                            <div class="span3">
-                                <h4>
-                                    About Free Admin Template</h4>
-                                <ul>
-                                    <li>
-                                        <a href="javascript:;">EGrappler.com</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Web Development Resources</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Responsive HTML5 Portfolio Templates</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Free Resources and Scripts</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="span3">
-                                <h4>
-                                    Support</h4>
-                                <ul>
-                                    <li>
-                                        <a href="javascript:;">Frequently Asked Questions</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Ask a Question</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Video Tutorial</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Feedback</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="span3">
-                                <h4>
-                                    Something Legal</h4>
-                                <ul>
-                                    <li>
-                                        <a href="javascript:;">Read License</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Terms of Use</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Privacy Policy</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="span3">
-                                <h4>
-                                    Open Source jQuery Plugins</h4>
-                                <ul>
-                                    <li>
-                                        <a href="http://www.egrappler.com">Open Source jQuery Plugins</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://www.egrappler.com;">HTML5 Responsive Tempaltes</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://www.egrappler.com;">Free Contact Form Plugin</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://www.egrappler.com;">Flat UI PSD</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
+                    <div class="span3">
+                        <h4>
+                            Open Source jQuery Plugins</h4>
+                        <ul>
+                            <li>
+                                <a href="http://www.egrappler.com">Open Source jQuery Plugins</a>
+                            </li>
+                            <li>
+                                <a href="http://www.egrappler.com;">HTML5 Responsive Tempaltes</a>
+                            </li>
+                            <li>
+                                <a href="http://www.egrappler.com;">Free Contact Form Plugin</a>
+                            </li>
+                            <li>
+                                <a href="http://www.egrappler.com;">Flat UI PSD</a>
+                            </li>
+                        </ul>
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="footer">
+        </div>
 
-                <div class="footer-inner">
+    </div>
 
-                    <div class="container">
-
-                        <div class="row">
-
-                            <div class="span12">
-                                &copy; 2013
-                                <a href="http://www.egrappler.com/">Bootstrap Responsive Admin Template</a>.
-                            </div>
-
-                        </div>
-
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        &copy; 2013
+                        <a href="http://www.egrappler.com/">Bootstrap Responsive Admin Template</a>.
                     </div>
 
                 </div>
 
             </div>
 
-            <script src="js/jquery-1.7.2.min.js"></script>
-            <script src="js/excanvas.min.js"></script>
-            <script src="js/chart.min.js" type="text/javascript"></script>
-            <script src="js/bootstrap.js"></script>
-            <script src="js/base.js"></script>
-            <script>
+        </div>
 
-                var pieData = [
-                    {
-                        value: 680,
-                        color: "#176cc4"
-                    }, {
-                        value: 650,
-                        color: "#ff33fd"
-                    }
+    </div>
 
-                ];
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-                var myPie = new Chart(document.getElementById("pie-chart").getContext("2d")).Pie(pieData);
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Comprar nueva publicidad</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <p id="parrafoTiposPublicidad">
+                        <select id="tiposPublicidad">
+                            <option value="Medios de comunicacion">Medios de comunicacion</option>
+                            <option value="Internet">Internet</option>
+                            <option value="Impresa">Impresa</option>
+                            <option value="Aplicaciones">Aplicaciones</option>
+                        </select>
+                    </p>
+                    <p id="parrafoPublicidad">
+                        <select id="ventaPublicidad">
+                            <option value="Television">Television</option>
+                            <option value="Radio">Radio</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onClick="$(this).ContratarPublicidad();">Aceptar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
 
-                var barChartData = {
-                    labels: [
-                        "Ene",
-                        "Feb",
-                        "Mar",
-                        "Abril",
-                        "Mayo",
-                        "Junio",
-                        "Julio"
-                    ],
-                    datasets: [
-                        {
-                            fillColor: "rgb(23, 108, 196)",
-                            strokeColor: "rgb(0, 41, 84)",
-                            data: [
-                                65,
-                                59,
-                                90,
-                                81,
-                                56,
-                                55,
-                                40
-                            ]
-                        }, {
-                            fillColor: "rgb(255, 51, 253)",
-                            strokeColor: "rgb(195, 0, 193)",
-                            data: [
-                                28,
-                                48,
-                                40,
-                                19,
-                                96,
-                                27,
-                                100
-                            ]
-                        }
-                    ]
+        </div>
+    </div>
 
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/excanvas.min.js"></script>
+    <script src="js/chart.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js"></script>
+    <script language="javascript" type="text/javascript" src="js/full-calendar/fullcalendar.min.js"></script>
+
+    <script src="js/base.js"></script>
+    <script src="js/pasoTiempo.js"></script>
+
+    <script>
+        window.onbeforeunload = confirmExit;
+        if (sessionStorage.getItem("datosTabla") == null) {
+            var data = [];
+        } else {
+
+            var data = JSON.parse(sessionStorage.getItem("datosTabla"));
+
+        }
+        if (sessionStorage.getItem("datosXAnio") == null) {
+            var dataAnios = [];
+        } else {
+
+            var dataAnios = JSON.parse(sessionStorage.getItem("datosXAnio"));
+
+        }
+
+        if (sessionStorage.getItem("catPublicidad") == null) {
+          pub1 = ["Internet", "Publicidad en facebook", 500];
+
+          var catPublicidad = new Array(pub1);
+        } else {
+            var catPublicidad = JSON.parse(sessionStorage.getItem("catPublicidad"));
+        }
+
+
+
+        if (sessionStorage.getItem("empleados") == null) {
+            var emp1 = [
+                "Esmeralda",
+                "Fortunata",
+                "Jerónimo",
+                0,
+                0,
+                0
+            ];
+            var emp2 = [
+                "Paulino",
+                "Baldo",
+                "Irene",
+                0,
+                0,
+                0
+            ];
+            var emp3 = [
+                "Almudena",
+                "Gil",
+                "Chelo",
+                0,
+                0,
+                0
+            ];
+            var emp4 = [
+                "Régulo",
+                "Aristides",
+                "Salud",
+                0,
+                0,
+                0
+            ];
+            var emp5 = [
+                "Constanza",
+                "Florentino",
+                "Florentino",
+                0,
+                0,
+                0
+            ];
+            var empleados = new Array(emp1, emp2, emp3, emp4, emp5);
+        } else {
+
+            var empleados = JSON.parse(sessionStorage.getItem("empleados"));
+
+        }
+
+        if (sessionStorage.getItem("prendasStock") == null) {
+            var pren1 = ["Tenis", "Converse", 0, 0];
+            var prendasStock = new Array(pren1);
+        } else {
+
+            var prendasStock = JSON.parse(sessionStorage.getItem("prendasStock"));
+
+        }
+
+        if (sessionStorage.getItem("prendasCompra") == null) {
+            var prencomp1 = ["Tenis", "Converse", 700, 100];
+            var prendasCompra = new Array(prencomp1);
+        } else {
+
+            var prendasCompra = JSON.parse(sessionStorage.getItem("prendasCompra"));
+        }
+
+        if (sessionStorage.dinero) {
+            dinero = Number(sessionStorage.dinero);
+        } else {
+
+            dinero = 70000;
+
+        }
+
+        if (sessionStorage.dias) {
+            dinero = Number(sessionStorage.dinero);
+        } else {
+
+            dinero = 70000;
+
+        }
+        if (sessionStorage.dias) {
+            dias = Number(sessionStorage.dias);
+        } else {
+
+            dias = 0;
+
+        }
+        if (sessionStorage.semanas) {
+            semanas = Number(sessionStorage.semanas);
+        } else {
+
+            semanas = 0;
+
+        }
+        if (sessionStorage.meses) {
+            meses = Number(sessionStorage.meses);
+        } else {
+
+            meses = 0;
+
+        }
+        if (sessionStorage.anios) {
+            anios = Number(sessionStorage.anios);
+        } else {
+
+            anios = 0;
+
+        }
+        $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+
+        for (var i = 0; i < catPublicidad.length; i++) {
+            var act = catPublicidad[i];
+            var tipo = act[0];
+            var nombre = act[1];
+            var costo = act[2];
+
+            $('<tr class="Reg R' + i + '"><td>' + tipo + '</td><td>' + nombre + '</td><td>$' + costo + '.00</td><td class="td-actions"><button class="btn btn-small btn-danger" onClick="$(this).Cancelar(' + i + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPublicidad');
+
+        }
+
+        if (anios < 2) {
+            totalPagaEmpleados = 0;
+            for (var i = 0; i < empleados.length; i++) {
+                var act = empleados[i];
+                if (act[3] == 1) {
+
+                    totalPagaEmpleados = totalPagaEmpleados + act[5];
+                }
+            }
+            var inter = setInterval(function() {
+
+                if (anios == 2) {
+                    clearInterval(inter);
+                    dias = dias - 1;
                 }
 
-                var myLine = new Chart(document.getElementById("bar-chart1").getContext("2d")).Bar(barChartData);
-                var myLine = new Chart(document.getElementById("bar-chart2").getContext("2d")).Bar(barChartData);
-                var myLine = new Chart(document.getElementById("bar-chart3").getContext("2d")).Bar(barChartData);
-            </script>
-            <script src="js/pasoTiempo.js"></script>
-            <script src="js/interaccionesBase.js"></script>
+                generarVentasDia();
 
-        </body>
-    </html>
+                if (dias >= 7) {
+                    dias = 0;
+                    semanas = semanas + 1;
+                    if (semanas >= 5) {
+                        semanas = 1;
+                        dinero = dinero - totalPagaEmpleados;
+                        for (var i = 0; i < prendasCompra.length; i++) {
+                            masStock = Math.floor((Math.random() * 20) + 0);
+                            prendasCompra[i][3] = prendasCompra[i][3] + masStock;
+                        }
+                        meses = meses + 1;
+                        data.push(0);
+                        if (meses >= 13) {
+                            meses = 1;
+                            anios = anios + 1;
+                            var arrAux = new Array(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11]);
+                            dataAnios.push(arrAux);
+                            data.length = 0;
+                            data.push(0);
+                        }
+                    }
+                }
+                dias = dias + 1;
+                $("#tiempoJuego").text("Años: " + anios + " Meses: " + meses + " Semanas: " + semanas + " Dias: " + dias);
+
+            }, pasoDeTiempo);
+        }
+
+        function generarVentasDia() {
+            personas = Math.floor((Math.random() * 200) + 10);
+
+            for (var y = 1; y <= personas; y++) {
+                probEntrar = Math.random();
+
+                if ((probEntrar >= 0) && (probEntrar <= 0.1)) {
+                    for (var i = 0; i < prendasStock.length; i++) {
+                        compra = 1;
+                        while (compra == 1) {
+                            probComprar = Math.random();
+                            if ((probComprar >= 0) && (probComprar <= 0.05)) {
+                                if (prendasStock[i][2] > 0) {
+                                    data[meses - 1] = data[meses - 1] + 1;
+                                    prendasStock[i][2] = prendasStock[i][2] - 1;
+                                    dinero = dinero + prendasStock[i][3];
+                                    volverComprar = Math.random();
+                                    if ((volverComprar >= 0) && (volverComprar <= 0.02)) {
+                                        compra = 1;
+                                    } else {
+                                        compra = 0;
+                                    }
+
+                                } else {
+                                    compra = 0;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+        $("#tiposPublicidad").change(function() {
+            var tipo = $("#tiposPublicidad").val();
+            if (tipo == "Medios de comunicacion") {
+                $("#parrafoPublicidad").html('<select id="ventaPublicidad"><option value="Television">Television</option><option value="Radio">Radio</option></select>');
+            } else if (tipo == "Internet") {
+                $("#parrafoPublicidad").html('<select id="ventaPublicidad"><option value="Banner publicitario">Banner publicitario</option><option value="Publicidad en facebook">Publicidad en facebook</option><option value="Publicidad en twitter">Publicidad en twitter</option></select>');
+            } else if (tipo == "Impresa") {
+                $("#parrafoPublicidad").html('<select id="ventaPublicidad"><option value="Folletos">Folletos</option><option value="Calendarios publicitarios">Calendarios publicitarios</option><option value="Espectacular">Espectacular</option></select>');
+            } else if (tipo == "Aplicaciones") {
+                $("#parrafoPublicidad").html('<select id="ventaPublicidad"><option value="Espacio publicitario en aplicacion">Espacio publicitario en aplicacion</option><option value="Espacio publicitario en juego">Espacio publicitario en juego</option></select>');
+            }
+        });
+
+        $.fn.ContratarPublicidad = function() {
+            var tipo = $("#tiposPublicidad").val();
+            var nombre = $("#ventaPublicidad").val();
+
+            if (nombre == "Television") {
+                costo = Math.floor((Math.random() * 100000) + 20000);
+            } else if (nombre == "Radio") {
+                costo = Math.floor((Math.random() * 1000) + 300);
+            } else if (nombre == "Banner publicitario") {
+                costo = Math.floor((Math.random() * 5000) + 3000);
+            } else if (nombre == "Publicidad en facebook") {
+                costo = Math.floor((Math.random() * 500) + 300);
+            } else if (nombre == "Publicidad en twitter") {
+                costo = Math.floor((Math.random() * 500) + 300);
+            } else if (nombre == "Espectacular") {
+                costo = Math.floor((Math.random() * 20000) + 12000);
+            } else if (nombre == "Espacio publicitario en aplicacion") {
+                costo = Math.floor((Math.random() * 300) + 100);
+            } else if (nombre == "Espacio publicitario en juego") {
+                costo = Math.floor((Math.random() * 300) + 100);
+            }
+
+            pubnueva = [tipo, nombre, costo];
+            var sig = catPublicidad.length;
+            catPublicidad.push(pubnueva);
+
+            $('<tr class="Reg R' + sig + '"><td>' + tipo + '</td><td>' + nombre + '</td><td>$' + costo + '.00</td><td class="td-actions"><button class="btn btn-small btn-danger" onClick="$(this).Cancelar(' + sig + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPublicidad');
+
+        };
+
+        $.fn.Cancelar = function(id) {
+
+            $('tr.R' + id).replaceWith('');
+
+            var index = catPublicidad.indexOf(catPublicidad[id]);
+            if (index > -1) {
+                catPublicidad.splice(index, 1);
+            }
+        };
+
+        function confirmExit() {
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.dias = dias;
+                sessionStorage.semanas = semanas;
+                sessionStorage.meses = meses;
+                sessionStorage.anios = anios;
+                sessionStorage.dinero = dinero;
+                sessionStorage.setItem("datosTabla", JSON.stringify(data));
+                sessionStorage.setItem("datosXAnio", JSON.stringify(dataAnios));
+                sessionStorage.setItem("empleados", JSON.stringify(empleados));
+                sessionStorage.setItem("prendasStock", JSON.stringify(prendasStock));
+                sessionStorage.setItem("prendasCompra", JSON.stringify(prendasCompra));
+                sessionStorage.setItem("catPublicidad", JSON.stringify(catPublicidad));
+            } else {
+                return ("Actualize su navegador, o de lo contrario el juego no funcionará");
+            }
+
+        }
+    </script>
+
+</body>
+</html>

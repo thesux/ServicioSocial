@@ -438,72 +438,83 @@
         }
 
         $.fn.AgregarPrenda = function() {
-            var tipoPrenda = $("#tipoPrenda").val();
-            var marca = $("#txtMarca").val();
-            var prennuevo = [tipoPrenda, marca, 0, 0];
-            var sig = prendasStock.length;
-            prendasStock.push(prennuevo);
+            if (anios < 2) {
+                var tipoPrenda = $("#tipoPrenda").val();
+                var marca = $("#txtMarca").val();
+                var prennuevo = [tipoPrenda, marca, 0, 0];
+                var sig = prendasStock.length;
+                prendasStock.push(prennuevo);
 
-            var codVenta = '<input type="number" min="0" value="0" class="form-control" style="width:60%" id="Ven' + sig + '">';
+                var codVenta = '<input type="number" min="0" value="0" class="form-control" style="width:60%" id="Ven' + sig + '">';
 
-            $('<tr class="Reg R1' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td id="S' + sig + '">0</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + sig + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPrendasStock');
+                $('<tr class="Reg R1' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td id="S' + sig + '">0</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + sig + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>').appendTo('#tablaPrendasStock');
 
-            precio = Math.floor((Math.random() * 1000) + 100);
-            stock = Math.floor((Math.random() * 100) + 10);
-            var prennuevo = [tipoPrenda, marca, precio, stock];
-            prendasCompra.push(prennuevo);
+                precio = Math.floor((Math.random() * 1000) + 100);
+                stock = Math.floor((Math.random() * 100) + 10);
+                var prennuevo = [tipoPrenda, marca, precio, stock];
+                prendasCompra.push(prennuevo);
 
-            var codVenta = '<input type="number" min="0" max="' + stock + '" value="0" class="form-control" style="width:60%" id="Comp' + sig + '">';
+                var codVenta = '<input type="number" min="0" max="' + stock + '" value="0" class="form-control" style="width:60%" id="Comp' + sig + '">';
 
-            $('<tr class="Reg R2' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>$' + precio + '.00</td><td>' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaCompraPrendas');
+                $('<tr class="Reg R2' + sig + '"><td>' + tipoPrenda + '</td><td>' + marca + '</td><td>$' + precio + '.00</td><td>' + stock + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + sig + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>').appendTo('#tablaCompraPrendas');
 
-            $("#tipoPrenda").val('Camisa');
-            $("#txtMarca").val('');
+                $("#tipoPrenda").val('Camisa');
+                $("#txtMarca").val('');
 
+            }
         };
 
         $.fn.Eliminar = function(id) {
+            if (anios < 2) {
+                $('tr.R1' + id).replaceWith('');
+                $('tr.R2' + id).replaceWith('');
 
-            $('tr.R1' + id).replaceWith('');
-            $('tr.R2' + id).replaceWith('');
+                var index = prendasStock.indexOf(prendasStock[id]);
+                if (index > -1) {
+                    prendasStock.splice(index, 1);
+                }
 
-            var index = prendasStock.indexOf(prendasStock[id]);
-            if (index > -1) {
-                prendasStock.splice(index, 1);
-            }
-
-            var index = prendasCompra.indexOf(prendasCompra[id]);
-            if (index > -1) {
-                prendasCompra.splice(index, 1);
+                var index = prendasCompra.indexOf(prendasCompra[id]);
+                if (index > -1) {
+                    prendasCompra.splice(index, 1);
+                }
             }
         };
 
         $.fn.Comprar = function(id) {
-            var cantidad = parseInt($("#Comp" + id).val());
-            if (cantidad > 0) {
-                prendasCompra[id][3] = prendasCompra[id][3] - cantidad;
-                prendasStock[id][2] = prendasStock[id][2] + cantidad;
-                totalPagar = cantidad * prendasCompra[id][2];
-                dinero = dinero - totalPagar;
+            if (anios < 2) {
+                var cantidad = parseInt($("#Comp" + id).val());
+                if (cantidad > 0) {
+                    prendasCompra[id][3] = prendasCompra[id][3] - cantidad;
+                    prendasStock[id][2] = prendasStock[id][2] + cantidad;
+                    totalPagar = cantidad * prendasCompra[id][2];
+                    dinero = dinero - totalPagar;
 
-                var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
+                    var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
 
-                $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td id="S' + id + '">' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+                    $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td id="S' + id + '">' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
 
-                var codVenta = '<input type="number" min="0" max="' + prendasCompra[id][3] + '" value="0" class="form-control" style="width:60%" id="Comp' + id + '">';
+                    var codVenta = '<input type="number" min="0" max="' + prendasCompra[id][3] + '" value="0" class="form-control" style="width:60%" id="Comp' + id + '">';
 
-                $('tr.R2' + id).replaceWith('<tr class="Reg R2' + id + '"><td>' + prendasCompra[id][0] + '</td><td>' + prendasCompra[id][1] + '</td><td>$' + prendasCompra[id][2] + '.00</td><td>' + prendasCompra[id][3] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>');
+                    $('tr.R2' + id).replaceWith('<tr class="Reg R2' + id + '"><td>' + prendasCompra[id][0] + '</td><td>' + prendasCompra[id][1] + '</td><td>$' + prendasCompra[id][2] + '.00</td><td>' + prendasCompra[id][3] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Comprar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button></td></tr>');
 
+                }
+            } else {
+                $('#Comp' + id).val(0);
             }
         };
 
         $.fn.Actualizar = function(id) {
-            var precioVenta = parseInt($("#Ven" + id).val());
-            prendasStock[id][3] = precioVenta;
+            if (anios < 2) {
+                var precioVenta = parseInt($("#Ven" + id).val());
+                prendasStock[id][3] = precioVenta;
 
-            var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
+                var codVenta = '<input type="number" min="0" value="' + prendasStock[id][3] + '" class="form-control" style="width:60%" id="Ven' + id + '">';
 
-            $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td id="S' + id + '">' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+                $('tr.R1' + id).replaceWith('<tr class="Reg R1' + id + '"><td>' + prendasStock[id][0] + '</td><td>' + prendasStock[id][1] + '</td><td id="S' + id + '">' + prendasStock[id][2] + '</td><td>' + codVenta + '</td><td class="td-actions"><button class="btn btn-small btn-success" onClick="$(this).Actualizar(' + id + ');"><i class="btn-icon-only icon-ok"></i></button><button class="btn btn-small btn-danger" onClick="$(this).Eliminar(' + id + ');"><i class="btn-icon-only icon-remove"></i></button></td></tr>');
+            } else {
+                $('#Ven' + id).val(prendasStock[id][3]);
+            }
         };
 
         $('#myModal').on('shown.bs.modal', function() {
